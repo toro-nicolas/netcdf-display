@@ -7,7 +7,7 @@
 
 NAME		=	netcdf-display
 
-CC		=	g++
+CC		=	gcc
 DEBUG_MODE	=
 
 BUILDDIR 	=	./build

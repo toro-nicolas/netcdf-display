@@ -12,19 +12,20 @@
 
 #include "../include/nc_display.h"
 
-void open_file(char *path, int mode, int *file_id)
+void open_file(char *str_path, int32_t i_mode, int32_t *pi_file_id)
 {
-    check_error(nc_open(path, mode, file_id));
+    check_error(nc_open(str_path, i_mode, pi_file_id));
 }
 
-void get_infos(file_informations *file_infos)
+void get_infos(file_informations *in_ps_file_infos)
 {
-    check_error(nc_inq(file_infos->file_id, &file_infos->nb_dimensions,
-        &file_infos->nb_variables, &file_infos->nb_attributes,
-        &file_infos->unlimited_dimensions_id));
+    check_error(nc_inq(in_ps_file_infos->i_file_id,
+         &in_ps_file_infos->i_nb_dimensions, &in_ps_file_infos->i_nb_variables,
+        &in_ps_file_infos->i_nb_attributes,
+        &in_ps_file_infos->i_first_unlimited_dimensions_id));
 }
 
-void close_file(int file_id)
+void close_file(int32_t i_file_id)
 {
-    check_error(nc_close(file_id));
+    check_error(nc_close(i_file_id));
 }

@@ -15,7 +15,7 @@
 void check_error(int error)
 {
     if (error != 0) {
-        fprintf(stderr, "%s\n", nc_strerror(error));
+        fprintf(stderr, "\033[0;31m\033[1m%s\033[0m\n", nc_strerror(error));
         exit(1);
     }
 }
