@@ -32,6 +32,7 @@
     #define BOLD "\033[1m"
     #define UNDERLINE "\033[4m"
     #define RESET "\033[0m"
+    #define TAB "    "
 
 typedef struct settings_s {
     bool b_global_attributes;
@@ -65,7 +66,7 @@ extern const char *apc_type_list[];
 
 
 void display_dimensions(file_informations *in_ps_file_info);
-void display_attribute(file_informations *in_ps_file_infos, int32_t i_var_id, int32_t i_nb_attributes);
+void display_attribute(file_informations *in_ps_file_infos, int32_t i_var_id, int32_t i_nb_attributes, char *ac_tab);
 void display_globals_attributes(file_informations *in_ps_file_infos);
 void display_variables(file_informations *in_ps_file_infos, settings_t *ps_settings);
 void check_error(int error);

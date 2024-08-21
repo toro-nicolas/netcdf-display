@@ -413,7 +413,7 @@ void display_variables_values(int file_id, variable_informations_s *current_var)
 
 void display_variables(file_informations *in_ps_file_infos, settings_t *ps_settings)
 {
-    printf("\n    \033[1m\033[4mVariables: %d\n\033[0m", in_ps_file_infos->i_nb_variables);
+    printf("\n    " BOLD UNDERLINE "Variables: %d\n" RESET, in_ps_file_infos->i_nb_variables);
     for (int var = 0; var < in_ps_file_infos->i_nb_variables; var++) {
         variable_informations_s s_current_var = {0};
         s_current_var.i_id = var;
@@ -422,7 +422,7 @@ void display_variables(file_informations *in_ps_file_infos, settings_t *ps_setti
         check_error(nc_inq_var(in_ps_file_infos->i_file_id, s_current_var.i_id,
           s_current_var.ac_var_name, &s_current_var.i_type, &s_current_var.i_ndims,
           s_current_var.ai_dimids, &s_current_var.i_natts));
-        printf("\033[1mVariable %d:\n\033[0m", s_current_var.i_id);
+        printf(BOLD "Variable %d:\n" RESET, s_current_var.i_id);
         printf("  - name = %s\n", s_current_var.ac_var_name);
         printf("  - type = %s\n", apc_type_list[
             ((s_current_var.i_type > 12 || s_current_var.i_type < 0) ? 0 : s_current_var.i_type)]);
@@ -443,6 +443,10 @@ void display_variables(file_informations *in_ps_file_infos, settings_t *ps_setti
         for (int index = 0; index < s_current_var.i_ndims; index++)
             s_current_var.i_data_size *= s_current_var.ai_dims_size[index];
         printf("  - data size = %zu\n", s_current_var.i_data_size);
+        if (ps_settings->b_attribute) {
+            for (int i_att_id = 0; i_att_id < s_current_var.i_natts; i_att_id++)
+                display_attribute(in_ps_file_infos, s_current_var.i_id, i_att_id, TAB);
+        }
         if (ps_settings->b_content)
             display_variables_values(in_ps_file_infos->i_file_id, &s_current_var);
     }
