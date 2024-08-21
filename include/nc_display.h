@@ -21,9 +21,26 @@
 #include <errno.h>
 #include <string.h>
 #include <fcntl.h>
+#include <getopt.h>
 
 #ifndef NC_DISPLAY_H_
     #define NC_DISPLAY_H_
+
+    #define RED "\033[0;31m"
+    #define GREEN "\033[0;32m"
+    #define YELLOW "\033[0;33m"
+    #define BOLD "\033[1m"
+    #define UNDERLINE "\033[4m"
+    #define RESET "\033[0m"
+
+typedef struct settings_s {
+    bool b_global_attributes;
+    bool b_dimension;
+    bool b_variable;
+    bool b_attribute;
+    bool b_content;
+    char *ac_file;
+} settings_t;
 
 typedef struct file_informations_s {
     int32_t i_file_id;
@@ -50,7 +67,7 @@ extern const char *apc_type_list[];
 void display_dimensions(file_informations *in_ps_file_info);
 void display_attribute(file_informations *in_ps_file_infos, int32_t i_var_id, int32_t i_nb_attributes);
 void display_globals_attributes(file_informations *in_ps_file_infos);
-void display_variables(file_informations *in_ps_file_infos, bool b_display_data);
+void display_variables(file_informations *in_ps_file_infos, settings_t *ps_settings);
 void check_error(int error);
 void open_file(char *path, int mode, int *file_id);
 void get_infos(file_informations *file_infos);

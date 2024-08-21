@@ -12,6 +12,14 @@
 
 #include "../include/nc_display.h"
 
+void check_error(int error)
+{
+    if (error != 0) {
+        fprintf(stderr, RED BOLD "Error:" RESET RED " %s\n" RESET, nc_strerror(error));
+        exit(1);
+    }
+}
+
 void open_file(char *str_path, int32_t i_mode, int32_t *pi_file_id)
 {
     check_error(nc_open(str_path, i_mode, pi_file_id));

@@ -411,7 +411,7 @@ void display_variables_values(int file_id, variable_informations_s *current_var)
     free(start);
 }
 
-void display_variables(file_informations *in_ps_file_infos, bool b_display_data)
+void display_variables(file_informations *in_ps_file_infos, settings_t *ps_settings)
 {
     printf("\n    \033[1m\033[4mVariables: %d\n\033[0m", in_ps_file_infos->i_nb_variables);
     for (int var = 0; var < in_ps_file_infos->i_nb_variables; var++) {
@@ -437,14 +437,13 @@ void display_variables(file_informations *in_ps_file_infos, bool b_display_data)
                     printf("]\n");
             }
         }
-        //check_error(nc_inq_varnatts(in_ps_file_infos->i_file_id, i_var_id, &nb_attributes));
         for (int i_index = 0; i_index < s_current_var.i_ndims; i_index++)
             check_error(nc_inq_dimlen(in_ps_file_infos->i_file_id,
             s_current_var.ai_dimids[i_index], &s_current_var.ai_dims_size[i_index]));
         for (int index = 0; index < s_current_var.i_ndims; index++)
             s_current_var.i_data_size *= s_current_var.ai_dims_size[index];
         printf("  - data size = %zu\n", s_current_var.i_data_size);
-        if (b_display_data == true)
+        if (ps_settings->b_content)
             display_variables_values(in_ps_file_infos->i_file_id, &s_current_var);
     }
 }
