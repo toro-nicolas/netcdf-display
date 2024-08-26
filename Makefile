@@ -46,7 +46,7 @@ clean:
 	@rm -rf $(BUILDDIR)
 	@echo -e "\033[1;31mAll .o deleted.\033[0m"
 
-fclean:
+fclean: clean
 	@rm -rf vgcore*
 	@rm -rf *.log
 	@rm -rf $(NAME)
