@@ -18,9 +18,14 @@ void display_attribute_byte(file_informations *in_ps_file_infos,
     signed char *value = (signed char *)calloc(i_att_len, sizeof(signed char));
 
     nc_get_att_schar(in_ps_file_infos->i_file_id, i_var_id, ac_att_name, value);
-    printf("  - value =\n");
-    for (size_t i_index = 0; i_index < i_att_len; i_index++)
-        printf("%hhi\n", value[i_index]);
+    printf("  - value = [");
+    for (size_t i_index = 0; i_index < i_att_len; i_index++) {
+        printf("%hhi", value[i_index]);
+        if (i_index + 1 < i_att_len)
+            printf(", ");
+        else
+            printf("]\n");
+    }
     free(value);
 }
 
@@ -40,9 +45,14 @@ void display_attribute_short(file_informations *in_ps_file_infos,
     short *value = (short *)calloc(i_att_len, sizeof(short));
 
     nc_get_att_short(in_ps_file_infos->i_file_id, i_var_id, ac_att_name, value);
-    printf("  - value =\n");
-    for (size_t i_index = 0; i_index < i_att_len; i_index++)
-        printf("%hi\n", value[i_index]);
+    printf("  - value = [");
+    for (size_t i_index = 0; i_index < i_att_len; i_index++) {
+        printf("%hi", value[i_index]);
+        if (i_index + 1 < i_att_len)
+            printf(", ");
+        else
+            printf("]\n");
+    }
     free(value);
 }
 
@@ -52,9 +62,14 @@ void display_attribute_int(file_informations *in_ps_file_infos,
     int *value = (int *)calloc(i_att_len, sizeof(int));
 
     nc_get_att_int(in_ps_file_infos->i_file_id, i_var_id, ac_att_name, value);
-    printf("  - value =\n");
-    for (size_t i_index = 0; i_index < i_att_len; i_index++)
-        printf("%i\n", value[i_index]);
+    printf("  - value = [");
+    for (size_t i_index = 0; i_index < i_att_len; i_index++) {
+        printf("%i", value[i_index]);
+        if (i_index + 1 < i_att_len)
+            printf(", ");
+        else
+            printf("]\n");
+    }
     free(value);
 }
 
@@ -64,9 +79,14 @@ void display_attribute_float(file_informations *in_ps_file_infos,
     float *value = (float *)calloc(i_att_len, sizeof(float));
 
     nc_get_att_float(in_ps_file_infos->i_file_id, i_var_id, ac_att_name, value);
-    printf("  - value =\n");
-    for (size_t i_index = 0; i_index < i_att_len; i_index++)
-        printf("%f\n", value[i_index]);
+    printf("  - value = [");
+    for (size_t i_index = 0; i_index < i_att_len; i_index++) {
+        printf("%f", value[i_index]);
+        if (i_index + 1 < i_att_len)
+            printf(", ");
+        else
+            printf("]\n");
+    }
     free(value);
 }
 
@@ -76,9 +96,14 @@ void display_attribute_double(file_informations *in_ps_file_infos,
     double *value = (double *)calloc(i_att_len, sizeof(double));
 
     nc_get_att_double(in_ps_file_infos->i_file_id, i_var_id, ac_att_name, value);
-    printf("  - value =\n");
-    for (size_t i_index = 0; i_index < i_att_len; i_index++)
-        printf("%f\n", value[i_index]);
+    printf("  - value = [");
+    for (size_t i_index = 0; i_index < i_att_len; i_index++) {
+        printf("%f", value[i_index]);
+        if (i_index + 1 < i_att_len)
+            printf(", ");
+        else
+            printf("]\n");
+    }
     free(value);
 }
 
@@ -88,9 +113,14 @@ void display_attribute_ubyte(file_informations *in_ps_file_infos,
     unsigned char *value = (unsigned char *)calloc(i_att_len, sizeof(unsigned char));
 
     nc_get_att_ubyte(in_ps_file_infos->i_file_id, i_var_id, ac_att_name, value);
-    printf("  - value =\n");
-    for (size_t i_index = 0; i_index < i_att_len; i_index++)
-        printf("%hhx\n", value[i_index]);
+    printf("  - value = [");
+    for (size_t i_index = 0; i_index < i_att_len; i_index++) {
+        printf("%hhx", value[i_index]);
+        if (i_index + 1 < i_att_len)
+            printf(", ");
+        else
+            printf("]\n");
+    }
     free(value);
 }
 
@@ -100,6 +130,14 @@ void display_attribute_ushort(file_informations *in_ps_file_infos,
     unsigned short *value = (unsigned short *)calloc(i_att_len, sizeof(unsigned short));
 
     nc_get_att_ushort(in_ps_file_infos->i_file_id, i_var_id, ac_att_name, value);
+    printf("  - value = [");
+    for (size_t i_index = 0; i_index < i_att_len; i_index++) {
+        printf("%hu", value[i_index]);
+        if (i_index + 1 < i_att_len)
+            printf(", ");
+        else
+            printf("]\n");
+    }
     free(value);
 }
 
@@ -109,9 +147,14 @@ void display_attribute_uint(file_informations *in_ps_file_infos,
     unsigned int *value = (unsigned int *)calloc(i_att_len, sizeof(unsigned int));
 
     nc_get_att_uint(in_ps_file_infos->i_file_id, i_var_id, ac_att_name, value);
-    printf("  - value =\n");
-    for (size_t i_index = 0; i_index < i_att_len; i_index++)
-        printf("%u\n", value[i_index]);
+    printf("  - value = [");
+    for (size_t i_index = 0; i_index < i_att_len; i_index++) {
+        printf("%u", value[i_index]);
+        if (i_index + 1 < i_att_len)
+            printf(", ");
+        else
+            printf("]\n");
+    }
     free(value);
 }
 
@@ -121,9 +164,14 @@ void display_attribute_int64(file_informations *in_ps_file_infos,
     long long *value = (long long *)calloc(i_att_len, sizeof(long long));
 
     nc_get_att_longlong(in_ps_file_infos->i_file_id, i_var_id, ac_att_name, value);
-    printf("  - value =\n");
-    for (size_t i_index = 0; i_index < i_att_len; i_index++)
-        printf("%lli\n", value[i_index]);
+    printf("  - value = [");
+    for (size_t i_index = 0; i_index < i_att_len; i_index++) {
+        printf("%lli", value[i_index]);
+        if (i_index + 1 < i_att_len)
+            printf(", ");
+        else
+            printf("]\n");
+    }
     free(value);
 }
 
@@ -133,9 +181,14 @@ void display_attribute_uint64(file_informations *in_ps_file_infos,
     unsigned long long *value = (unsigned long long *)calloc(i_att_len, sizeof(unsigned long long));
 
     nc_get_att_ulonglong(in_ps_file_infos->i_file_id, i_var_id, ac_att_name, value);
-    printf("  - value =\n");
-    for (size_t i_index = 0; i_index < i_att_len; i_index++)
-        printf("%llu\n", value[i_index]);
+    printf("  - value = [");
+    for (size_t i_index = 0; i_index < i_att_len; i_index++) {
+        printf("%llu", value[i_index]);
+        if (i_index + 1 < i_att_len)
+            printf(", ");
+        else
+            printf("]\n");
+    }
     free(value);
 }
 
@@ -145,10 +198,14 @@ void display_attribute_string(file_informations *in_ps_file_infos,
     char **value = (char **)calloc(i_att_len, sizeof(char *));
 
     nc_get_att_string(in_ps_file_infos->i_file_id, i_var_id, ac_att_name, value);
-
-    printf("  - value =\n");
-    for (size_t i_index = 0; i_index < i_att_len; i_index++)
-        printf("%s\n", value[i_index]);
+    printf("  - value = [");
+    for (size_t i_index = 0; i_index < i_att_len; i_index++) {
+        printf("%s", value[i_index]);
+        if (i_index + 1 < i_att_len)
+            printf(", ");
+        else
+            printf("]\n");
+    }
     free(value);
 }
 

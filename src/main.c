@@ -21,9 +21,9 @@ void display(settings_t *ps_settings)
 
     open_file(ps_settings->ac_file, NC_NOWRITE, &s_file_infos.i_file_id);
     get_infos(&s_file_infos);
-    if (ps_settings->b_attribute)
+    if (!ps_settings->b_variable && ps_settings->b_attribute)
         printf(BOLD "WARNING:" RESET " Variable attributes display is selectable, but variable display is not.\n");
-    if (ps_settings->b_content)
+    if (!ps_settings->b_variable && ps_settings->b_content)
         printf(BOLD "WARNING:" RESET " Variable content display is selectable, but variable display is not.\n");
     printf("\033[1mDisplay all informations of the file :\n\033[0m");
     if (ps_settings->b_global_attributes == false && ps_settings->b_dimension == false &&
@@ -49,9 +49,9 @@ int main(int argc, char **argv)
         {"help", no_argument, 0, 'h'},
         {"switch", no_argument, 0, 's'},
         {"global-attributes", no_argument, 0, 'g'},
-        {"dimension", no_argument, 0, 'd'},
-        {"variable", no_argument, 0, 'v'},
-        {"attribute", no_argument, 0, 'a'},
+        {"dimensions", no_argument, 0, 'd'},
+        {"variables", no_argument, 0, 'v'},
+        {"attributes", no_argument, 0, 'a'},
         {"content", no_argument, 0, 'c'},
         {0, 0, 0, 0}
     };
@@ -76,9 +76,9 @@ int main(int argc, char **argv)
                 printf("\t-h, --help\t\t\tDisplay this help and exit\n");
                 printf("\t-s, --switch\t\t\tSwitch between all options\n");
                 printf("\t-g, --global-attributes\t\tDisplay global attributes\n");
-                printf("\t-d, --dimension\t\t\tDisplay dimensions\n");
-                printf("\t-v, --variable\t\t\tDisplay variables\n");
-                printf("\t-a, --attribute\t\t\tDisplay attributes of variables\n");
+                printf("\t-d, --dimensions\t\t\tDisplay dimensions\n");
+                printf("\t-v, --variables\t\t\tDisplay variables\n");
+                printf("\t-a, --attributes\t\t\tDisplay attributes of variables\n");
                 printf("\t-c, --content\t\t\tDisplay content of variables\n");
                 return EXIT_SUCCESS;
             case 's':

@@ -413,6 +413,8 @@ void display_variables_values(int file_id, variable_informations_s *current_var)
 
 void display_variables(file_informations *in_ps_file_infos, settings_t *ps_settings)
 {
+    char ac_dim_name[MAX_NC_NAME + 1] = {0};
+
     printf("\n    " BOLD UNDERLINE "Variables: %d\n" RESET, in_ps_file_infos->i_nb_variables);
     for (int var = 0; var < in_ps_file_infos->i_nb_variables; var++) {
         variable_informations_s s_current_var = {0};
@@ -426,11 +428,21 @@ void display_variables(file_informations *in_ps_file_infos, settings_t *ps_setti
         printf("  - name = %s\n", s_current_var.ac_var_name);
         printf("  - type = %s\n", apc_type_list[
             ((s_current_var.i_type > 12 || s_current_var.i_type < 0) ? 0 : s_current_var.i_type)]);
-        printf("  - ndims = %i\n", s_current_var.i_ndims);
+        printf("  - number of dims = %i\n", s_current_var.i_ndims);
         if (s_current_var.i_ndims > 0) {
-            printf("  - dimids = [");
+            printf("  - dims ids = [");
             for (int32_t i_index = 0; i_index < s_current_var.i_ndims; i_index++) {
                 printf("%i", s_current_var.ai_dimids[i_index]);
+                if (i_index + 1 < s_current_var.i_ndims)
+                    printf(", ");
+                else
+                    printf("]\n");
+            }
+            printf("  - dims name = [");
+            for (int32_t i_index = 0; i_index < s_current_var.i_ndims; i_index++) {
+                nc_inq_dimname(in_ps_file_infos->i_file_id,
+                    s_current_var.ai_dimids[i_index], ac_dim_name);
+                printf("%s", ac_dim_name);
                 if (i_index + 1 < s_current_var.i_ndims)
                     printf(", ");
                 else
@@ -447,7 +459,7 @@ void display_variables(file_informations *in_ps_file_infos, settings_t *ps_setti
             for (int i_att_id = 0; i_att_id < s_current_var.i_natts; i_att_id++)
                 display_attribute(in_ps_file_infos, s_current_var.i_id, i_att_id, TAB);
         }
-        if (ps_settings->b_content)
+        if (ps_settings->b_content && s_current_var.i_data_size != 0 && s_current_var.i_ndims != 0)
             display_variables_values(in_ps_file_infos->i_file_id, &s_current_var);
     }
 }
