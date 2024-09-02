@@ -2,11 +2,11 @@
 ** SEAGNAL PROJECT, 2024
 ** netcdf-zone-selector
 ** File description:
-** The main file of the project
+** The file containing the attributes functions
 */
 /**
  * @file attributs.cc
- * @brief The main file of the project
+ * @brief The file containing the attributes functions
  * @author Nicolas TORO
  */
 

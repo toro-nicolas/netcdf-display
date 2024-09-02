@@ -32,7 +32,7 @@ create-build:
 	@mkdir -p $(BUILDDIR)
 
 $(BUILDDIR)/%.o: $(SRCDIR)/%.c
-	$(CC) $(CFLAGS) $(OPTIMIZEFLAGS) $(LDFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) $(OPTIMIZEFLAGS) $(LDFLAGS) -c $< -o $@
 
 debug: CFLAGS += $(DEBUGFLAGS)
 debug: OPTIMIZEFLAGS =
@@ -55,10 +55,6 @@ fclean: clean
 re:	fclean all
 
 re_debug: fclean debug
-
-valgrind: fclean debug
-	@echo -e "\033[0;36mExecuting valgrind...\033[0m"
-	@valgrind $(VALGRINDFLAGS) ./$(NAME) 2> $(OUTPUT)
 
 # Documentation
 doc:

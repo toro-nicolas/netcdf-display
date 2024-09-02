@@ -22,6 +22,9 @@
 #include <string.h>
 #include <fcntl.h>
 #include <getopt.h>
+#include <wait.h>
+#include <libgen.h>
+#include <linux/limits.h>
 
 #ifndef NC_DISPLAY_H_
     #define NC_DISPLAY_H_

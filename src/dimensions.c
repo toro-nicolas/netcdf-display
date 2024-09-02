@@ -2,11 +2,11 @@
 ** SEAGNAL PROJECT, 2024
 ** netcdf-zone-selector
 ** File description:
-** The main file of the project
+** The file containing the dimensions functions
 */
 /**
  * @file dimensions.cc
- * @brief The main file of the project
+ * @brief The file containing the dimensions functions
  * @author Nicolas TORO
  */
 
