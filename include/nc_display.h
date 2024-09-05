@@ -43,6 +43,7 @@ typedef struct settings_s {
     bool b_variable;
     bool b_attribute;
     bool b_content;
+    bool b_raw;
     char *ac_file;
 } settings_t;
 
@@ -63,6 +64,7 @@ typedef struct variable_informations_s {
     int32_t i_natts;
     size_t ai_dims_size[NC_MAX_VAR_DIMS];
     size_t i_data_size;
+    char aac_dims_name[NC_MAX_VAR_DIMS][NC_MAX_NAME + 1];
 } variable_informations_s;
 
 extern const char *apc_type_list[];

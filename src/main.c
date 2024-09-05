@@ -44,7 +44,7 @@ int main(int argc, char **argv)
 {
     int32_t c_flag = 0;
     int32_t i_option_index = 0;
-    settings_t s_settings = {false, false, false, false, false, NULL};
+    settings_t s_settings = {false, false, false, false, false, false, NULL};
     struct option long_options[] = {
         {"help", no_argument, 0, 'h'},
         {"switch", no_argument, 0, 's'},
@@ -53,6 +53,7 @@ int main(int argc, char **argv)
         {"variables", no_argument, 0, 'v'},
         {"attributes", no_argument, 0, 'a'},
         {"content", no_argument, 0, 'c'},
+        {"raw", no_argument, 0, 'r'},
         {0, 0, 0, 0}
     };
 
@@ -64,7 +65,7 @@ int main(int argc, char **argv)
     }
     opterr = 0;
     while (1) {
-        c_flag = getopt_long(argc, argv, "hsgdvac", long_options, &i_option_index);
+        c_flag = getopt_long(argc, argv, "hsgdvacr", long_options, &i_option_index);
         if (c_flag == -1)
             break;
         switch (c_flag) {
@@ -80,6 +81,7 @@ int main(int argc, char **argv)
                 printf("\t-v, --variables\t\t\tDisplay variables\n");
                 printf("\t-a, --attributes\t\t\tDisplay attributes of variables\n");
                 printf("\t-c, --content\t\t\tDisplay content of variables\n");
+                printf("\t-r, --raw\t\t\tDisplay content of variables in a raw text\n");
                 return EXIT_SUCCESS;
             case 's':
                 s_settings.b_global_attributes = !s_settings.b_global_attributes;
@@ -102,6 +104,9 @@ int main(int argc, char **argv)
                 break;
             case 'c':
                 s_settings.b_content = !s_settings.b_content;
+                break;
+            case 'r':
+                s_settings.b_raw = !s_settings.b_raw;
                 break;
             default:
                 printf(BOLD "%s:" RESET " Unknown option '-%c'.\n", argv[0], optopt);

@@ -12,409 +12,218 @@
 
 #include "../include/nc_display.h"
 
-void display_invalid_variable(int32_t i_file_id, variable_informations_s *s_current_var,
-    size_t *ai_count, size_t *ai_start)
+void display_invalid_variable(int32_t in_i_file_id, variable_informations_s *in_ps_current_var,
+    size_t *in_ai_count, size_t *in_ai_start)
 {
     printf("Unsupported variable type.\n");
 }
 
-void display_byte_variable(int32_t i_file_id, variable_informations_s *s_current_var,
-    size_t *ai_count, size_t *ai_start)
+void display_byte_variable(int32_t in_i_file_id, variable_informations_s *in_ps_current_var,
+    size_t *in_ai_count, size_t *in_ai_start)
 {
-    char *value = NULL;
+    signed char *value = calloc(1, sizeof(signed char));
 
-    for (size_t i_index = 0; i_index < s_current_var->i_data_size; i_index++) {
-        value = calloc(1, sizeof(char));
-        check_error(nc_get_vara_schar(i_file_id, s_current_var->i_id, ai_start, ai_count, value));
-        printf("Value[");
-        for (int32_t i_dim_index = 0; i_dim_index < s_current_var->i_ndims; i_dim_index++) {
-            printf("%zu", ai_start[i_dim_index]);
-            if (i_dim_index + 1 < s_current_var->i_ndims)
-                printf(", ");
-            else
-                printf("]: %hhi\n", value[0]);
-        }
-        free(value);
-        for (int i_start_index = 0; i_start_index < s_current_var->i_ndims
-        && i_index + 1 < s_current_var->i_data_size; i_start_index++) {
-            if ((ai_start[i_start_index] + 1 == s_current_var->ai_dims_size[i_start_index] && i_start_index == 0)
-            || ai_start[i_start_index] == s_current_var->ai_dims_size[i_start_index]) {
-                ai_start[i_start_index] = 0;
-                ai_start[i_start_index + 1] += 1;
-            } else if (i_start_index == 0) {
-                ai_start[i_start_index] += 1;
-                break;
-            }
-        }
-    }
+    check_error(nc_get_vara_schar(in_i_file_id, in_ps_current_var->i_id, in_ai_start, in_ai_count, value));
+    printf("%hhi", value[0]);
+    free(value);
 }
 
-void display_char_variable(int32_t i_file_id, variable_informations_s *s_current_var,
-    size_t *ai_count, size_t *ai_start)
+void display_char_variable(int32_t in_i_file_id, variable_informations_s *in_s_current_var,
+    size_t *in_ai_count, size_t *in_ai_start)
 {
-    char *value = NULL;
+    char *value = calloc(1, sizeof(char));
 
-    for (size_t i_index = 0; i_index < s_current_var->i_data_size; i_index++) {
-        value = calloc(1, sizeof(char));
-        check_error(nc_get_vara_text(i_file_id, s_current_var->i_id, ai_start, ai_count, value));
-        printf("Value[");
-        for (int32_t i_dim_index = 0; i_dim_index < s_current_var->i_ndims; i_dim_index++) {
-            printf("%zu", ai_start[i_dim_index]);
-            if (i_dim_index + 1 < s_current_var->i_ndims)
-                printf(", ");
-            else
-                printf("]: %c\n", value[0]);
-        }
-        free(value);
-        for (int i_start_index = 0; i_start_index < s_current_var->i_ndims
-        && i_index + 1 < s_current_var->i_data_size; i_start_index++) {
-            if ((ai_start[i_start_index] + 1 == s_current_var->ai_dims_size[i_start_index] && i_start_index == 0)
-            || ai_start[i_start_index] == s_current_var->ai_dims_size[i_start_index]) {
-                ai_start[i_start_index] = 0;
-                ai_start[i_start_index + 1] += 1;
-            } else if (i_start_index == 0) {
-                ai_start[i_start_index] += 1;
-                break;
-            }
-        }
-    }
+    check_error(nc_get_vara_text(in_i_file_id, in_s_current_var->i_id, in_ai_start, in_ai_count, value));
+    printf("%c", value[0]);
+    free(value);
 }
 
-void display_short_variable(int32_t i_file_id, variable_informations_s *s_current_var,
-    size_t *ai_count, size_t *ai_start)
+void display_short_variable(int32_t in_i_file_id, variable_informations_s *in_ps_current_var,
+    size_t *in_ai_count, size_t *in_ai_start)
 {
-    short *value = NULL;
+    short *value = calloc(1, sizeof(short));
 
-    for (size_t i_index = 0; i_index < s_current_var->i_data_size; i_index++) {
-        value = calloc(1, sizeof(short));
-        check_error(nc_get_vara_short(i_file_id, s_current_var->i_id, ai_start, ai_count, value));
-        printf("Value[");
-        for (int32_t i_dim_index = 0; i_dim_index < s_current_var->i_ndims; i_dim_index++) {
-            printf("%zu", ai_start[i_dim_index]);
-            if (i_dim_index + 1 < s_current_var->i_ndims)
-                printf(", ");
-            else
-                printf("]: %hi\n", value[0]);
-        }
-        free(value);
-        for (int i_start_index = 0; i_start_index < s_current_var->i_ndims
-        && i_index + 1 < s_current_var->i_data_size; i_start_index++) {
-            if ((ai_start[i_start_index] + 1 == s_current_var->ai_dims_size[i_start_index] && i_start_index == 0)
-            || ai_start[i_start_index] == s_current_var->ai_dims_size[i_start_index]) {
-                ai_start[i_start_index] = 0;
-                ai_start[i_start_index + 1] += 1;
-            } else if (i_start_index == 0) {
-                ai_start[i_start_index] += 1;
-                break;
-            }
-        }
-    }
+    check_error(nc_get_vara_short(in_i_file_id, in_ps_current_var->i_id, in_ai_start, in_ai_count, value));
+    printf("%hi", value[0]);
+    free(value);
 }
 
-void display_int_variable(int32_t i_file_id, variable_informations_s *s_current_var,
-    size_t *ai_count, size_t *ai_start)
+void display_int_variable(int32_t in_i_file_id, variable_informations_s *in_ps_current_var,
+    size_t *in_ai_count, size_t *in_ai_start)
 {
-    int *value = NULL;
+    int *value = calloc(1, sizeof(int));
 
-    for (size_t i_index = 0; i_index < s_current_var->i_data_size; i_index++) {
-        value = calloc(1, sizeof(int));
-        check_error(nc_get_vara_int(i_file_id, s_current_var->i_id, ai_start, ai_count, value));
-        printf("Value[");
-        for (int32_t i_dim_index = 0; i_dim_index < s_current_var->i_ndims; i_dim_index++) {
-            printf("%zu", ai_start[i_dim_index]);
-            if (i_dim_index + 1 < s_current_var->i_ndims)
-                printf(", ");
-            else
-                printf("]: %i\n", value[0]);
-        }
-        free(value);
-        for (int i_start_index = 0; i_start_index < s_current_var->i_ndims
-        && i_index + 1 < s_current_var->i_data_size; i_start_index++) {
-            if ((ai_start[i_start_index] + 1 == s_current_var->ai_dims_size[i_start_index] && i_start_index == 0)
-            || ai_start[i_start_index] == s_current_var->ai_dims_size[i_start_index]) {
-                ai_start[i_start_index] = 0;
-                ai_start[i_start_index + 1] += 1;
-            } else if (i_start_index == 0) {
-                ai_start[i_start_index] += 1;
-                break;
-            }
-        }
-    }
+    check_error(nc_get_vara_int(in_i_file_id, in_ps_current_var->i_id, in_ai_start, in_ai_count, value));
+    printf("%i", value[0]);
+    free(value);
 }
 
-void display_float_variable(int32_t i_file_id, variable_informations_s *s_current_var,
-    size_t *ai_count, size_t *ai_start)
+void display_float_variable(int32_t in_i_file_id, variable_informations_s *in_ps_current_var,
+    size_t *in_ai_count, size_t *in_ai_start)
 {
-    float *value = NULL;
+    float *value = calloc(1, sizeof(float));
 
-    for (size_t i_index = 0; i_index < s_current_var->i_data_size; i_index++) {
-        value = calloc(1, sizeof(float));
-        check_error(nc_get_vara_float(i_file_id, s_current_var->i_id, ai_start, ai_count, value));
-        printf("Value[");
-        for (int32_t i_dim_index = 0; i_dim_index < s_current_var->i_ndims; i_dim_index++) {
-            printf("%zu", ai_start[i_dim_index]);
-            if (i_dim_index + 1 < s_current_var->i_ndims)
-                printf(", ");
-            else
-                printf("]: %f\n", value[0]);
-        }
-        free(value);
-        for (int i_start_index = 0; i_start_index < s_current_var->i_ndims
-        && i_index + 1 < s_current_var->i_data_size; i_start_index++) {
-            if ((ai_start[i_start_index] + 1 == s_current_var->ai_dims_size[i_start_index] && i_start_index == 0)
-            || ai_start[i_start_index] == s_current_var->ai_dims_size[i_start_index]) {
-                ai_start[i_start_index] = 0;
-                ai_start[i_start_index + 1] += 1;
-            } else if (i_start_index == 0) {
-                ai_start[i_start_index] += 1;
-                break;
-            }
-        }
-    }
+    check_error(nc_get_vara_float(in_i_file_id, in_ps_current_var->i_id, in_ai_start, in_ai_count, value));
+    printf("%f", value[0]);
+    free(value);
 }
 
-void display_double_variable(int32_t i_file_id, variable_informations_s *s_current_var,
-    size_t *ai_count, size_t *ai_start)
+void display_double_variable(int32_t in_i_file_id, variable_informations_s *in_ps_current_var,
+    size_t *in_ai_count, size_t *in_ai_start)
 {
-    double *value = NULL;
+    double *value = calloc(1, sizeof(double));
 
-    for (size_t i_index = 0; i_index < s_current_var->i_data_size; i_index++) {
-        value = calloc(1, sizeof(double));
-        check_error(nc_get_vara_double(i_file_id, s_current_var->i_id, ai_start, ai_count, value));
-        printf("Value[");
-        for (int32_t i_dim_index = 0; i_dim_index < s_current_var->i_ndims; i_dim_index++) {
-            printf("%zu", ai_start[i_dim_index]);
-            if (i_dim_index + 1 < s_current_var->i_ndims)
-                printf(", ");
-            else
-                printf("]: %.50f\n", value[0]);
-        }
-        free(value);
-        for (int i_start_index = 0; i_start_index < s_current_var->i_ndims
-        && i_index + 1 < s_current_var->i_data_size; i_start_index++) {
-            if ((ai_start[i_start_index] + 1 == s_current_var->ai_dims_size[i_start_index] && i_start_index == 0)
-            || ai_start[i_start_index] == s_current_var->ai_dims_size[i_start_index]) {
-                ai_start[i_start_index] = 0;
-                ai_start[i_start_index + 1] += 1;
-            } else if (i_start_index == 0) {
-                ai_start[i_start_index] += 1;
-                break;
-            }
-        }
-    }
+    check_error(nc_get_vara_double(in_i_file_id, in_ps_current_var->i_id, in_ai_start, in_ai_count, value));
+    printf("%f", value[0]);//printf("%.50f", value[0]);
+    free(value);
 }
 
-void display_ubyte_variable(int32_t i_file_id, variable_informations_s *s_current_var,
-    size_t *ai_count, size_t *ai_start)
+void display_ubyte_variable(int32_t in_i_file_id, variable_informations_s *in_ps_current_var,
+    size_t *in_ai_count, size_t *in_ai_start)
 {
-    unsigned char *value = NULL;
+    unsigned char *value = calloc(1, sizeof(unsigned char));
 
-    for (size_t i_index = 0; i_index < s_current_var->i_data_size; i_index++) {
-        value = calloc(1, sizeof(unsigned char));
-        check_error(nc_get_vara_ubyte(i_file_id, s_current_var->i_id, ai_start, ai_count, value));
-        printf("Value[");
-        for (int32_t i_dim_index = 0; i_dim_index < s_current_var->i_ndims; i_dim_index++) {
-            printf("%zu", ai_start[i_dim_index]);
-            if (i_dim_index + 1 < s_current_var->i_ndims)
-                printf(", ");
-            else
-                printf("]: %hhx\n", value[0]);
-        }
-        free(value);
-        for (int i_start_index = 0; i_start_index < s_current_var->i_ndims
-        && i_index + 1 < s_current_var->i_data_size; i_start_index++) {
-            if ((ai_start[i_start_index] + 1 == s_current_var->ai_dims_size[i_start_index] && i_start_index == 0)
-            || ai_start[i_start_index] == s_current_var->ai_dims_size[i_start_index]) {
-                ai_start[i_start_index] = 0;
-                ai_start[i_start_index + 1] += 1;
-            } else if (i_start_index == 0) {
-                ai_start[i_start_index] += 1;
-                break;
-            }
-        }
-    }
+    check_error(nc_get_vara_ubyte(in_i_file_id, in_ps_current_var->i_id, in_ai_start, in_ai_count, value));
+    printf("%hhx", value[0]);
+    free(value);
 }
 
-void display_ushort_variable(int32_t i_file_id, variable_informations_s *s_current_var,
-    size_t *ai_count, size_t *ai_start)
+void display_ushort_variable(int32_t in_i_file_id, variable_informations_s *in_ps_current_var,
+    size_t *in_ai_count, size_t *in_ai_start)
 {
-    unsigned short *value = NULL;
+    unsigned short *value = calloc(1, sizeof(unsigned short));
 
-    for (size_t i_index = 0; i_index < s_current_var->i_data_size; i_index++) {
-        value = calloc(1, sizeof(unsigned short));
-        check_error(nc_get_vara_ushort(i_file_id, s_current_var->i_id, ai_start, ai_count, value));
-        printf("Value[");
-        for (int32_t i_dim_index = 0; i_dim_index < s_current_var->i_ndims; i_dim_index++) {
-            printf("%zu", ai_start[i_dim_index]);
-            if (i_dim_index + 1 < s_current_var->i_ndims)
-                printf(", ");
-            else
-                printf("]: %hu\n", value[0]);
-        }
-        free(value);
-        for (int i_start_index = 0; i_start_index < s_current_var->i_ndims
-        && i_index + 1 < s_current_var->i_data_size; i_start_index++) {
-            if ((ai_start[i_start_index] + 1 == s_current_var->ai_dims_size[i_start_index] && i_start_index == 0)
-            || ai_start[i_start_index] == s_current_var->ai_dims_size[i_start_index]) {
-                ai_start[i_start_index] = 0;
-                ai_start[i_start_index + 1] += 1;
-            } else if (i_start_index == 0) {
-                ai_start[i_start_index] += 1;
-                break;
-            }
-        }
-    }
+    check_error(nc_get_vara_ushort(in_i_file_id, in_ps_current_var->i_id, in_ai_start, in_ai_count, value));
+    printf("%hu", value[0]);
+    free(value);
 }
 
-void display_uint_variable(int32_t i_file_id, variable_informations_s *s_current_var,
-    size_t *ai_count, size_t *ai_start)
+void display_uint_variable(int32_t in_i_file_id, variable_informations_s *in_ps_current_var,
+    size_t *in_ai_count, size_t *in_ai_start)
 {
-    unsigned int *value = NULL;
+    unsigned int *value = calloc(1, sizeof(unsigned int));
 
-    for (size_t i_index = 0; i_index < s_current_var->i_data_size; i_index++) {
-        value = calloc(1, sizeof(unsigned int));
-        check_error(nc_get_vara_uint(i_file_id, s_current_var->i_id, ai_start, ai_count, value));
-        printf("Value[");
-        for (int32_t i_dim_index = 0; i_dim_index < s_current_var->i_ndims; i_dim_index++) {
-            printf("%zu", ai_start[i_dim_index]);
-            if (i_dim_index + 1 < s_current_var->i_ndims)
-                printf(", ");
-            else
-                printf("]: %u\n", value[0]);
-        }
-        free(value);
-        for (int i_start_index = 0; i_start_index < s_current_var->i_ndims
-        && i_index + 1 < s_current_var->i_data_size; i_start_index++) {
-            if ((ai_start[i_start_index] + 1 == s_current_var->ai_dims_size[i_start_index] && i_start_index == 0)
-            || ai_start[i_start_index] == s_current_var->ai_dims_size[i_start_index]) {
-                ai_start[i_start_index] = 0;
-                ai_start[i_start_index + 1] += 1;
-            } else if (i_start_index == 0) {
-                ai_start[i_start_index] += 1;
-                break;
-            }
-        }
-    }
+    check_error(nc_get_vara_uint(in_i_file_id, in_ps_current_var->i_id, in_ai_start, in_ai_count, value));
+    printf("%u", value[0]);
+    free(value);
 }
 
-void display_int64_variable(int32_t i_file_id, variable_informations_s *s_current_var,
-    size_t *ai_count, size_t *ai_start)
+void display_int64_variable(int32_t in_i_file_id, variable_informations_s *in_ps_current_var,
+    size_t *in_ai_count, size_t *in_ai_start)
 {
-    long long *value = NULL;
+    long long *value = calloc(1, sizeof(long long));
 
-    for (size_t i_index = 0; i_index < s_current_var->i_data_size; i_index++) {
-        value = calloc(1, sizeof(long long));
-        check_error(nc_get_vara_longlong(i_file_id, s_current_var->i_id, ai_start, ai_count, value));
-        printf("Value[");
-        for (int32_t i_dim_index = 0; i_dim_index < s_current_var->i_ndims; i_dim_index++) {
-            printf("%zu", ai_start[i_dim_index]);
-            if (i_dim_index + 1 < s_current_var->i_ndims)
-                printf(", ");
-            else
-                printf("]: %lli\n", value[0]);
-        }
-        free(value);
-        for (int i_start_index = 0; i_start_index < s_current_var->i_ndims
-        && i_index + 1 < s_current_var->i_data_size; i_start_index++) {
-            if ((ai_start[i_start_index] + 1 == s_current_var->ai_dims_size[i_start_index] && i_start_index == 0)
-            || ai_start[i_start_index] == s_current_var->ai_dims_size[i_start_index]) {
-                ai_start[i_start_index] = 0;
-                ai_start[i_start_index + 1] += 1;
-            } else if (i_start_index == 0) {
-                ai_start[i_start_index] += 1;
-                break;
-            }
-        }
-    }
+    check_error(nc_get_vara_longlong(in_i_file_id, in_ps_current_var->i_id, in_ai_start, in_ai_count, value));
+    printf("%lli", value[0]);
+    free(value);
 }
 
-void display_uint64_variable(int32_t file_id, variable_informations_s *s_current_var,
-    size_t *ai_count, size_t *ai_start)
+void display_uint64_variable(int32_t in_i_file_id, variable_informations_s *in_ps_current_var,
+    size_t *in_ai_count, size_t *in_ai_start)
 {
-     	unsigned long long *value = NULL;
+    unsigned long long *value = calloc(1, sizeof(unsigned long long));
 
-    for (size_t i_index = 0; i_index < s_current_var->i_data_size; i_index++) {
-        value = calloc(1, sizeof( 	unsigned long long ));
-        check_error(nc_get_vara_ulonglong(file_id, s_current_var->i_id, ai_start, ai_count, value));
-        printf("Value[");
-        for (int32_t i_dim_index = 0; i_dim_index < s_current_var->i_ndims; i_dim_index++) {
-            printf("%zu", ai_start[i_dim_index]);
-            if (i_dim_index + 1 < s_current_var->i_ndims)
-                printf(", ");
-            else
-                printf("]: %llu\n", value[0]);
-        }
-        free(value);
-        for (int i_start_index = 0; i_start_index < s_current_var->i_ndims
-        && i_index + 1 < s_current_var->i_data_size; i_start_index++) {
-            if ((ai_start[i_start_index] + 1 == s_current_var->ai_dims_size[i_start_index] && i_start_index == 0)
-            || ai_start[i_start_index] == s_current_var->ai_dims_size[i_start_index]) {
-                ai_start[i_start_index] = 0;
-                ai_start[i_start_index + 1] += 1;
-            } else if (i_start_index == 0) {
-                ai_start[i_start_index] += 1;
-                break;
-            }
-        }
-    }
+    check_error(nc_get_vara_ulonglong(in_i_file_id, in_ps_current_var->i_id, in_ai_start, in_ai_count, value));
+    printf("%llu", value[0]);
+    free(value);
 }
 
-void display_string_variable(int32_t file_id, variable_informations_s *s_current_var,
-    size_t *ai_count, size_t *ai_start)
+void display_string_variable(int32_t in_i_file_id, variable_informations_s *in_ps_current_var,
+    size_t *in_ai_count, size_t *in_ai_start)
 {
-    char **value = NULL;
+    char **value = calloc(1, sizeof(char *));
 
-    for (size_t index = 0; index < s_current_var->i_data_size; index++) {
-        value = calloc(1, sizeof(char *));
-        check_error(nc_get_vara_string(file_id, s_current_var->i_id, ai_start, ai_count, value));
-        printf("Value[");
-        for (int32_t i_dim_index = 0; i_dim_index < s_current_var->i_ndims; i_dim_index++) {
-            printf("%zu", ai_start[i_dim_index]);
-            if (i_dim_index + 1 < s_current_var->i_ndims)
-                printf(", ");
-            else
-                printf("]: %s\n", value[0]);
-        }
-        free(value);
-        for (int i_start_index = 0; i_start_index < s_current_var->i_ndims
-        && index + 1 < s_current_var->i_data_size; i_start_index++) {
-            if ((ai_start[i_start_index] + 1 == s_current_var->ai_dims_size[i_start_index] && i_start_index == 0)
-            || ai_start[i_start_index] == s_current_var->ai_dims_size[i_start_index]) {
-                ai_start[i_start_index] = 0;
-                ai_start[i_start_index + 1] += 1;
-            } else if (i_start_index == 0) {
-                ai_start[i_start_index] += 1;
-                break;
-            }
-        }
-    }
+    check_error(nc_get_vara_string(in_i_file_id, in_ps_current_var->i_id, in_ai_start, in_ai_count, value));
+    printf("%s", value[0]);
+    free(value);
 }
 
-void display_variables_values(int file_id, variable_informations_s *current_var)
+void display_variables_values(int32_t in_i_file_id, variable_informations_s *in_ps_current_var,
+    bool in_b_raw)
 {
-    static void (*display_functions[])(int file_id,
-    variable_informations_s *current_var, size_t *count, size_t *start) = {
+    static void (*display_functions[])(int32_t in_i_file_id,
+    variable_informations_s *in_ps_current_var, size_t *in_ai_count, size_t *in_ai_start) = {
       &display_invalid_variable, &display_byte_variable, &display_char_variable,
       &display_short_variable, &display_int_variable,
       &display_float_variable, &display_double_variable, &display_ubyte_variable,
       &display_ushort_variable, &display_uint_variable, &display_int64_variable,
       &display_uint64_variable, &display_string_variable};
-    static size_t count[NC_MAX_VAR_DIMS] = {0};
-    size_t *start = calloc(current_var->i_ndims, sizeof(size_t));
+    static size_t ai_count[NC_MAX_VAR_DIMS] = {0};
+    size_t *ai_start = calloc(in_ps_current_var->i_ndims, sizeof(size_t));
 
     printf("  - content =\n");
-    for (int count_index = 0; count_index < NC_MAX_VAR_DIMS; count_index++)
-        count[count_index] = 1;
-    if (current_var->i_type > 12)
-        current_var->i_type = 0;
-    display_functions[current_var->i_type](file_id, current_var, count, start);
-    free(start);
+    for (int32_t i_count_index = 0; i_count_index < NC_MAX_VAR_DIMS; i_count_index++)
+        ai_count[i_count_index] = 1;
+    if (in_ps_current_var->i_type > 12)
+        in_ps_current_var->i_type = 0;
+    for (size_t i_index = 0; i_index < in_ps_current_var->i_data_size; i_index++) {
+        if (in_b_raw) {
+            printf("Value[");
+            for (int32_t i_dim_index = 0;
+                 i_dim_index < in_ps_current_var->i_ndims; i_dim_index++) {
+                printf("%zu", ai_start[i_dim_index]);
+                if (i_dim_index + 1 < in_ps_current_var->i_ndims)
+                    printf(", ");
+                else {
+                    printf("]: ");
+                    display_functions[in_ps_current_var->i_type](in_i_file_id,
+                        in_ps_current_var, ai_count, ai_start);
+                    putchar('\n');
+                }
+            }
+        } else {
+            for (int32_t i_start_index = in_ps_current_var->i_ndims - 1; ai_start[0] == 0 && i_start_index > -1; i_start_index--) {
+                bool b_tmp_skip = false;
+                for (int32_t i_tmp_index = i_start_index; i_tmp_index > -1; i_tmp_index--) {
+                    if (ai_start[i_tmp_index] != 0)
+                        b_tmp_skip = true;
+                }
+                if (b_tmp_skip)
+                    continue;
+                for (int32_t i_tmp_index = 0; i_tmp_index < ((in_ps_current_var->i_ndims - i_start_index - 1) * 4); i_tmp_index++)
+                    putchar(' ');
+                putchar('[');
+                if (i_start_index != 0 && i_start_index != in_ps_current_var->i_ndims - 1) {
+                    printf(" %s = %zu:", in_ps_current_var->aac_dims_name[i_start_index + 1], ai_start[i_start_index + 1]);
+                }
+                if (i_start_index != 0)
+                    putchar('\n');
+            }
+            display_functions[in_ps_current_var->i_type](in_i_file_id,
+                in_ps_current_var, ai_count, ai_start);
+            for (int32_t i_end_index = 0; i_end_index < in_ps_current_var->i_ndims; i_end_index++) {
+                if (ai_start[i_end_index] + 1 == in_ps_current_var->ai_dims_size[i_end_index]) {
+                    if (i_end_index != 0) {
+                        for (int32_t i_tmp_index = 0; i_tmp_index < ((in_ps_current_var->i_ndims - i_end_index - 1) * 4); i_tmp_index++)
+                            putchar(' ');
+                    }
+                    putchar(']');
+                    putchar('\n');
+                } else if (i_end_index == 0) {
+                    putchar(',');
+                    putchar(' ');
+                    break;
+                } else
+                    break;
+            }
+        }
+        for (int i_start_index = 0; i_start_index < in_ps_current_var->i_ndims
+        && i_index + 1 < in_ps_current_var->i_data_size; i_start_index++) {
+            if ((ai_start[i_start_index] + 1 == in_ps_current_var->ai_dims_size[i_start_index] && i_start_index == 0)
+            || ai_start[i_start_index] == in_ps_current_var->ai_dims_size[i_start_index]) {
+                ai_start[i_start_index] = 0;
+                ai_start[i_start_index + 1] += 1;
+            } else if (i_start_index == 0) {
+                ai_start[i_start_index] += 1;
+                break;
+            }
+        }
+    }
+    free(ai_start);
 }
 
-void display_variables(file_informations *in_ps_file_infos, settings_t *ps_settings)
+void display_variables(file_informations *in_ps_file_infos, settings_t *in_ps_settings)
 {
-    char ac_dim_name[MAX_NC_NAME + 1] = {0};
-
     printf("\n    " BOLD UNDERLINE "Variables: %d\n" RESET, in_ps_file_infos->i_nb_variables);
     for (int var = 0; var < in_ps_file_infos->i_nb_variables; var++) {
         variable_informations_s s_current_var = {0};
@@ -441,8 +250,8 @@ void display_variables(file_informations *in_ps_file_infos, settings_t *ps_setti
             printf("  - dims name = [");
             for (int32_t i_index = 0; i_index < s_current_var.i_ndims; i_index++) {
                 nc_inq_dimname(in_ps_file_infos->i_file_id,
-                    s_current_var.ai_dimids[i_index], ac_dim_name);
-                printf("%s", ac_dim_name);
+                    s_current_var.ai_dimids[i_index], s_current_var.aac_dims_name[i_index]);
+                printf("%s", s_current_var.aac_dims_name[i_index]);
                 if (i_index + 1 < s_current_var.i_ndims)
                     printf(", ");
                 else
@@ -455,12 +264,12 @@ void display_variables(file_informations *in_ps_file_infos, settings_t *ps_setti
         for (int index = 0; index < s_current_var.i_ndims; index++)
             s_current_var.i_data_size *= s_current_var.ai_dims_size[index];
         printf("  - data size = %zu\n", s_current_var.i_data_size);
-        if (ps_settings->b_attribute) {
+        if (in_ps_settings->b_attribute) {
             for (int i_att_id = 0; i_att_id < s_current_var.i_natts; i_att_id++)
                 display_attribute(in_ps_file_infos, s_current_var.i_id, i_att_id, TAB);
         }
-        if (ps_settings->b_content && s_current_var.i_data_size != 0 && s_current_var.i_ndims != 0)
-            display_variables_values(in_ps_file_infos->i_file_id, &s_current_var);
+        if (in_ps_settings->b_content && s_current_var.i_data_size != 0 && s_current_var.i_ndims != 0)
+            display_variables_values(in_ps_file_infos->i_file_id, &s_current_var, in_ps_settings->b_raw);
     }
 }
 
