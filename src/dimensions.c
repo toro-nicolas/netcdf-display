@@ -28,7 +28,7 @@ void display_dimensions(file_informations *in_ps_file_infos)
         check_error(nc_inq_dim(in_ps_file_infos->i_file_id, i_dim, ac_dim_name, &i_dim_len));
         printf(BOLD "Dimension %d:\n" RESET, i_dim);
         printf("  - name = %s\n", ac_dim_name);
-        printf("  - lenght = %zu\n", i_dim_len);
+        printf("  - length = %zu\n", i_dim_len);
         for (int32_t i_index = 0; i_index < i_nb_unlimdims; i_index++) {
             if (ai_unlimdimids[i_index] == i_dim) {
                 printf("  - Unlimited dimension\n");
