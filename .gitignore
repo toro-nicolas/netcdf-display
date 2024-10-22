@@ -16,7 +16,6 @@
 *.a
 a.out
 netcdf-display
-libcsfml-graphics.so.2.6
 
 # Unit_tests files
 *.gcda
@@ -31,13 +30,5 @@ vgcore.*
 .vscode
 .idea
 
-# Project informations files
-#*.pdf
-
-# Testing files
-foo.txt
-
 # Backup files
 *.old
-
-# Documentation files

@@ -103,24 +103,24 @@ $(function(){initNavTree('file_8c.html',''); initResizable(true); });
 </div><!--header-->
 <div class="contents">
 
-<p>The file containing the NetCDF file functions.  
+<p>The file containing the file functions.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="nc__display_8h_source.html">../include/nc_display.h</a>&quot;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a7f39e8d5a49bc8914a868fb98a656923" id="r_a7f39e8d5a49bc8914a868fb98a656923"><td class="memItemLeft" align="right" valign="top"><a id="a7f39e8d5a49bc8914a868fb98a656923" name="a7f39e8d5a49bc8914a868fb98a656923"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>check_error</b> (int error)</td></tr>
-<tr class="separator:a7f39e8d5a49bc8914a868fb98a656923"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad1ce780d652e5c5955684b9a96338a12" id="r_ad1ce780d652e5c5955684b9a96338a12"><td class="memItemLeft" align="right" valign="top"><a id="ad1ce780d652e5c5955684b9a96338a12" name="ad1ce780d652e5c5955684b9a96338a12"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>open_file</b> (char *str_path, int32_t i_mode, int32_t *pi_file_id)</td></tr>
-<tr class="separator:ad1ce780d652e5c5955684b9a96338a12"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a758320892aab1ebd903b09e8a617ab30" id="r_a758320892aab1ebd903b09e8a617ab30"><td class="memItemLeft" align="right" valign="top"><a id="a758320892aab1ebd903b09e8a617ab30" name="a758320892aab1ebd903b09e8a617ab30"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>get_infos</b> (<a class="el" href="structfile__informations__s.html">file_informations</a> *in_ps_file_infos)</td></tr>
-<tr class="separator:a758320892aab1ebd903b09e8a617ab30"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abe3f8e2502dcc63ff4db609dde9c3756" id="r_abe3f8e2502dcc63ff4db609dde9c3756"><td class="memItemLeft" align="right" valign="top"><a id="abe3f8e2502dcc63ff4db609dde9c3756" name="abe3f8e2502dcc63ff4db609dde9c3756"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>close_file</b> (int32_t i_file_id)</td></tr>
-<tr class="separator:abe3f8e2502dcc63ff4db609dde9c3756"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afdbb37ee9ee70c7d7829843752753182" id="r_afdbb37ee9ee70c7d7829843752753182"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afdbb37ee9ee70c7d7829843752753182">check_error</a> (int in_i_error, const char *in_ac_file, const int in_i_line, const char *in_ac_func)</td></tr>
+<tr class="memdesc:afdbb37ee9ee70c7d7829843752753182"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if there is an error.  <br /></td></tr>
+<tr class="separator:afdbb37ee9ee70c7d7829843752753182"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c70744195a1e3a4c9b4d1d6f7bc8a04" id="r_a6c70744195a1e3a4c9b4d1d6f7bc8a04"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6c70744195a1e3a4c9b4d1d6f7bc8a04">open_file</a> (char *in_str_path, int32_t in_i_mode, int32_t *in_pi_file_id)</td></tr>
+<tr class="memdesc:a6c70744195a1e3a4c9b4d1d6f7bc8a04"><td class="mdescLeft">&#160;</td><td class="mdescRight">Open a NetCDF file or a GRIB file.  <br /></td></tr>
+<tr class="separator:a6c70744195a1e3a4c9b4d1d6f7bc8a04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef79089225da61d1e376677ab22ceb01" id="r_aef79089225da61d1e376677ab22ceb01"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aef79089225da61d1e376677ab22ceb01">get_infos</a> (<a class="el" href="structfile__information__s.html">file_information_t</a> *in_ps_file_infos)</td></tr>
+<tr class="memdesc:aef79089225da61d1e376677ab22ceb01"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the informations of the file.  <br /></td></tr>
+<tr class="separator:aef79089225da61d1e376677ab22ceb01"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62a6db2d7fb270517d22572c9b675f7b" id="r_a62a6db2d7fb270517d22572c9b675f7b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a62a6db2d7fb270517d22572c9b675f7b">close_file</a> (int32_t in_i_file_id)</td></tr>
+<tr class="memdesc:a62a6db2d7fb270517d22572c9b675f7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Close a file.  <br /></td></tr>
+<tr class="separator:a62a6db2d7fb270517d22572c9b675f7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
@@ -129,9 +129,142 @@ char **&#160;</td><td class="memItemRight" valign="bottom"><b>environ</b></td></
 <tr class="separator:aa006daaf11f1e2e45a6ababaf463212b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>The file containing the NetCDF file functions. </p>
+<div class="textblock"><p>The file containing the file functions. </p>
 <dl class="section author"><dt>Author</dt><dd>Nicolas TORO </dd></dl>
-</div></div><!-- contents -->
+</div><h2 class="groupheader">Function Documentation</h2>
+<a id="afdbb37ee9ee70c7d7829843752753182" name="afdbb37ee9ee70c7d7829843752753182"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afdbb37ee9ee70c7d7829843752753182">&#9670;&#160;</a></span>check_error()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void check_error </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>in_i_error</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>in_ac_file</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>in_i_line</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>in_ac_func</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Check if there is an error. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">in_i_error</td><td>The error code </td></tr>
+    <tr><td class="paramname">in_ac_file</td><td>The file name </td></tr>
+    <tr><td class="paramname">in_i_line</td><td>The line number </td></tr>
+    <tr><td class="paramname">in_ac_func</td><td>The function name </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><b>void</b> </dd></dl>
+
+</div>
+</div>
+<a id="a62a6db2d7fb270517d22572c9b675f7b" name="a62a6db2d7fb270517d22572c9b675f7b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62a6db2d7fb270517d22572c9b675f7b">&#9670;&#160;</a></span>close_file()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void close_file </td>
+          <td>(</td>
+          <td class="paramtype">int32_t</td>          <td class="paramname"><span class="paramname"><em>in_i_file_id</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Close a file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">in_i_file_id</td><td>The file id </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><b>void</b> </dd></dl>
+
+</div>
+</div>
+<a id="aef79089225da61d1e376677ab22ceb01" name="aef79089225da61d1e376677ab22ceb01"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef79089225da61d1e376677ab22ceb01">&#9670;&#160;</a></span>get_infos()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void get_infos </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structfile__information__s.html">file_information_t</a> *</td>          <td class="paramname"><span class="paramname"><em>in_ps_file_infos</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the informations of the file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">in_ps_file_infos</td><td>The file informations </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><b>void</b> </dd></dl>
+
+</div>
+</div>
+<a id="a6c70744195a1e3a4c9b4d1d6f7bc8a04" name="a6c70744195a1e3a4c9b4d1d6f7bc8a04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c70744195a1e3a4c9b4d1d6f7bc8a04">&#9670;&#160;</a></span>open_file()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void open_file </td>
+          <td>(</td>
+          <td class="paramtype">char *</td>          <td class="paramname"><span class="paramname"><em>in_str_path</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int32_t</td>          <td class="paramname"><span class="paramname"><em>in_i_mode</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int32_t *</td>          <td class="paramname"><span class="paramname"><em>in_pi_file_id</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Open a NetCDF file or a GRIB file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">in_str_path</td><td>The file path </td></tr>
+    <tr><td class="paramname">in_i_mode</td><td>The mode to open the file </td></tr>
+    <tr><td class="paramname">in_pi_file_id</td><td>The file id </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><b>void</b> </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

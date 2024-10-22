@@ -25,13 +25,25 @@
 var NAVTREE =
 [
   [ "NetCDF Display documentation", "index.html", [
-    [ "netcdf-display", "md_README.html", null ],
+    [ "📊 netcdf-display 🗺️", "md_README.html", [
+      [ "Table of contents 📑", "md_README.html#autotoc_md1", null ],
+      [ "Description 📝", "md_README.html#autotoc_md2", null ],
+      [ "Usage ⚔️", "md_README.html#autotoc_md3", null ],
+      [ "Compilation 🛠️", "md_README.html#autotoc_md4", null ],
+      [ "Documentation 📚", "md_README.html#autotoc_md5", null ],
+      [ "Code mandatory 📦", "md_README.html#autotoc_md6", null ],
+      [ "Contributors 👤", "md_README.html#autotoc_md7", null ]
+    ] ],
     [ "Data Structures", "annotated.html", [
       [ "Data Structures", "annotated.html", "annotated_dup" ],
       [ "Data Structure Index", "classes.html", null ]
     ] ],
     [ "Files", "files.html", [
-      [ "File List", "files.html", "files_dup" ]
+      [ "File List", "files.html", "files_dup" ],
+      [ "Globals", "globals.html", [
+        [ "All", "globals.html", null ],
+        [ "Functions", "globals_func.html", null ]
+      ] ]
     ] ]
   ] ]
 ];

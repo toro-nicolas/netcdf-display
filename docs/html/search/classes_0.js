@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['file_5finformations_5fs_0',['file_informations_s',['../structfile__informations__s.html',1,'']]]
+  ['file_5finformation_5fs_0',['file_information_s',['../structfile__information__s.html',1,'']]]
 ];

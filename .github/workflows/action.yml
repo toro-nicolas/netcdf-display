@@ -1,0 +1,22 @@
+name: netcdf-display
+
+on: [push, pull_request]
+
+env:
+  EXECUTABLE: netcdf-display
+
+jobs:
+  check_program:
+    runs-on: ubuntu-latest
+    container:
+      image: epitechcontent/epitest-docker
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.1
+      - name: Launch "make"
+        run: make
+        timeout-minutes: 2
+      - name: Launch "make clean"
+        run: make clean
+      - name: Check program compilation
+        run: .github/workflows/check_program_compilation ${{ env.EXECUTABLE }}

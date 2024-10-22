@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.11.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>NetCDF Display documentation: netcdf-display</title>
+<title>NetCDF Display documentation: 📊 netcdf-display 🗺️</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -96,10 +96,78 @@ $(function(){initNavTree('md_README.html',''); initResizable(true); });
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">netcdf-display</div></div>
+  <div class="headertitle"><div class="title">📊 netcdf-display 🗺️</div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="autotoc_md0"></a></p>
+<h1><a class="anchor" id="autotoc_md1"></a>
+Table of contents 📑</h1>
+<ul>
+<li><a href="https://github.com/toro-nicolas/netcdf-display/blob/main/README.md#description-">Description</a></li>
+<li><a href="https://github.com/toro-nicolas/netcdf-display/blob/main/README.md#usage-%EF%B8%8F">Usage</a></li>
+<li><a href="https://github.com/toro-nicolas/netcdf-display/blob/main/README.md#compilation-%EF%B8%8F">Compilation</a></li>
+<li><a href="https://github.com/toro-nicolas/netcdf-display/blob/main/README.md#documentation-">Documentation</a></li>
+<li><a href="https://github.com/toro-nicolas/netcdf-display/blob/main/README.md#code-mandatory-">Code mandatory</a></li>
+<li><a href="https://github.com/toro-nicolas/netcdf-display/blob/main/README.md#contributors-">Contributors</a></li>
+</ul>
+<h1><a class="anchor" id="autotoc_md2"></a>
+Description 📝</h1>
+<p>The <b>netcdf-display</b> is a project from my internship at <a href="https://www.seagnal.fr/">Seagnal</a>, during my <b>2nd year</b> in <a href="https://www.epitech.eu/"><b>EPITECH</b></a> Grand Ecole program. <br  />
+ Its purpose is to create in <a href="https://en.wikipedia.org/wiki/C_(programming_language)"><b>C</b></a> a program to dump the content of <a href="https://en.wikipedia.org/wiki/NetCDF">NetCDF</a> (and <a href="https://en.wikipedia.org/wiki/GRIB">GRIB</a>) files.</p>
+<h1><a class="anchor" id="autotoc_md3"></a>
+Usage ⚔️</h1>
+<p>You can run netcdf-display like this : </p><div class="fragment"><div class="line">./netcdf-display --switch file.nc</div>
+</div><!-- fragment --><p>For more information, please see the help section. </p><div class="fragment"><div class="line">&gt; ./netcdf-display --help</div>
+<div class="line">Usage: ./netcdf-display file [OPTIONS] ...</div>
+<div class="line"> </div>
+<div class="line">DESCRIPTION</div>
+<div class="line">        Display the content of a NetCDF (or GRIB) file.</div>
+<div class="line"> </div>
+<div class="line">OPTIONS</div>
+<div class="line">        -h, --help                      Display this help and exit</div>
+<div class="line">        -s, --switch                    Switch between all options</div>
+<div class="line">        -g, --global-attributes         Display global attributes</div>
+<div class="line">        -d, --dimensions                Display dimensions</div>
+<div class="line">        -v, --variables                 Display variables</div>
+<div class="line">        -a, --attributes                Display attributes of variables</div>
+<div class="line">        -c, --content                   Display content of variables</div>
+<div class="line">        -r, --raw                       Set display style to a raw text</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md4"></a>
+Compilation 🛠️</h1>
+<p><a href="https://docs.unidata.ucar.edu/netcdf-c/current/"><b>NetCDF lib</b></a> is required to compile the project.</p>
+<p>You can compile the project with this command : </p><div class="fragment"><div class="line">make</div>
+</div><!-- fragment --><p>If you want to add color to program, you can compile the project with this : </p><div class="fragment"><div class="line">make color </div>
+</div><!-- fragment --><p>If you want to debug the program (debug contain colors), you can compile the project with this : </p><div class="fragment"><div class="line">make debug </div>
+</div><!-- fragment --><p>If you want clean the project, you can run this command : </p><div class="fragment"><div class="line">make fclean</div>
+</div><!-- fragment --><p>You can clean and compile the project with <code>make re</code> , for color <code>make re_color</code> and for debugging <code>make re_debug</code></p>
+<p>You can compile the unit tests with this command : </p><div class="fragment"><div class="line">make unit_tests</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md5"></a>
+Documentation 📚</h1>
+<p>The documentation is accessible <a href="https://toro-nicolas.github.io/netcdf-assembler/html/">here</a>.</p>
+<p>You can generate the documentation with this command : </p><div class="fragment"><div class="line">make doc</div>
+</div><!-- fragment --><p> You need multiple package for generate them :</p><ul>
+<li>doxygen</li>
+<li>doxygen-latex</li>
+<li>doxygen-doxywizard</li>
+<li>graphviz</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md6"></a>
+Code mandatory 📦</h1>
+<ul>
+<li>You'll need to create a branch where you'll push your code. Once you've completed your tasks on this branch, we'll work together to merge it and check that everything works.</li>
+<li>Every function you add must be documented and code-style with Seagnal's coding style.</li>
+<li>If the github actions don't succeed, then ask yourself some questions</li>
+<li>Each commit will contain <code>[+]</code> or <code>[-]</code> or <code>[~]</code> followed by a message<ul>
+<li><code>[+]</code> : Add feature</li>
+<li><code>[-]</code> : Delete feature</li>
+<li><code>[~]</code> : Edit feature</li>
+</ul>
+</li>
+</ul>
+<p><b>Of course, in exceptional cases, we may depart from these rules.</b></p>
+<h1><a class="anchor" id="autotoc_md7"></a>
+Contributors 👤</h1>
+<p>This project was carried out alone by <a href="https://github.com/toro-nicolas"><b>Nicolas TORO</b></a>. </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->

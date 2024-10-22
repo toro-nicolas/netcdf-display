@@ -29,4 +29,15 @@ var menudata={children:[
 {text:"Data Structures",url:"annotated.html"},
 {text:"Data Structure Index",url:"classes.html"}]},
 {text:"Files",url:"files.html",children:[
-{text:"File List",url:"files.html"}]}]}
+{text:"File List",url:"files.html"},
+{text:"Globals",url:"globals.html",children:[
+{text:"All",url:"globals.html",children:[
+{text:"c",url:"globals.html#index_c"},
+{text:"d",url:"globals.html#index_d"},
+{text:"g",url:"globals.html#index_g"},
+{text:"o",url:"globals.html#index_o"}]},
+{text:"Functions",url:"globals_func.html",children:[
+{text:"c",url:"globals_func.html#index_c"},
+{text:"d",url:"globals_func.html#index_d"},
+{text:"g",url:"globals_func.html#index_g"},
+{text:"o",url:"globals_func.html#index_o"}]}]}]}]}

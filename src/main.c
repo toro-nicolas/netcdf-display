@@ -12,12 +12,18 @@
 
 #include "../include/nc_display.h"
 
+/* The list of NetCDF types */
 const char *apc_type_list[] = {"Unknown", "Byte", "Char", "Short", "Int",
     "Float", "Double", "UByte", "UShort", "UInt", "Int64", "UInt64", "String"};
 
+/**
+ * @brief Display the file content according to the settings
+ * @param ps_settings The display settings
+ * @return <b>void</b>
+ */
 void display(settings_t *ps_settings)
 {
-    file_informations s_file_infos = {0};
+    file_information_t s_file_infos = {0};
 
     open_file(ps_settings->ac_file, NC_NOWRITE, &s_file_infos.i_file_id);
     get_infos(&s_file_infos);
@@ -25,7 +31,7 @@ void display(settings_t *ps_settings)
         printf(BOLD "WARNING:" RESET " Variable attributes display is selectable, but variable display is not.\n");
     if (!ps_settings->b_variable && ps_settings->b_content)
         printf(BOLD "WARNING:" RESET " Variable content display is selectable, but variable display is not.\n");
-    printf("\033[1mDisplay all informations of the file :\n\033[0m");
+    printf(BOLD "Display all informations of the file :\n" RESET);
     if (ps_settings->b_global_attributes == false && ps_settings->b_dimension == false &&
     ps_settings->b_variable == false) {
         printf("\nNothing to show.\n");
@@ -45,7 +51,7 @@ int main(int argc, char **argv)
     int32_t c_flag = 0;
     int32_t i_option_index = 0;
     settings_t s_settings = {false, false, false, false, false, false, NULL};
-    struct option long_options[] = {
+    struct option s_options[] = {
         {"help", no_argument, 0, 'h'},
         {"switch", no_argument, 0, 's'},
         {"global-attributes", no_argument, 0, 'g'},
@@ -65,23 +71,23 @@ int main(int argc, char **argv)
     }
     opterr = 0;
     while (1) {
-        c_flag = getopt_long(argc, argv, "hsgdvacr", long_options, &i_option_index);
+        c_flag = getopt_long(argc, argv, "hsgdvacr", s_options, &i_option_index);
         if (c_flag == -1)
             break;
         switch (c_flag) {
             case 'h':
                 printf(BOLD "Usage:" RESET " %s file [OPTIONS] ...\n\n", argv[0]);
                 printf(BOLD UNDERLINE "DESCRIPTION\n" RESET);
-                printf("\tDisplay the content of a NetCDF file.\n\n");
+                printf("\tDisplay the content of a NetCDF (or GRIB) file.\n\n");
                 printf(BOLD UNDERLINE "OPTIONS\n" RESET);
                 printf("\t-h, --help\t\t\tDisplay this help and exit\n");
                 printf("\t-s, --switch\t\t\tSwitch between all options\n");
                 printf("\t-g, --global-attributes\t\tDisplay global attributes\n");
-                printf("\t-d, --dimensions\t\t\tDisplay dimensions\n");
+                printf("\t-d, --dimensions\t\tDisplay dimensions\n");
                 printf("\t-v, --variables\t\t\tDisplay variables\n");
-                printf("\t-a, --attributes\t\t\tDisplay attributes of variables\n");
+                printf("\t-a, --attributes\t\tDisplay attributes of variables\n");
                 printf("\t-c, --content\t\t\tDisplay content of variables\n");
-                printf("\t-r, --raw\t\t\tDisplay content of variables in a raw text\n");
+                printf("\t-r, --raw\t\t\tSet display style to a raw text\n");
                 return EXIT_SUCCESS;
             case 's':
                 s_settings.b_global_attributes = !s_settings.b_global_attributes;

@@ -12,137 +12,248 @@
 
 #include "../include/nc_display.h"
 
-void display_invalid_variable(int32_t in_i_file_id, variable_informations_s *in_ps_current_var,
-    size_t *in_ai_count, size_t *in_ai_start)
+/**
+ * @brief Display a value of an invalid variable
+ * @param in_i_file_id The file id
+ * @param in_ps_current_var The current variable to display
+ * @param in_ai_count The number of values to display
+ * @param in_ai_start The values index
+ * @return <b>void</b>
+ */
+void display_invalid_variable(int32_t in_i_file_id, variable_information_t *in_ps_current_var,
+                              size_t *in_ai_count, size_t *in_ai_start)
 {
     printf("Unsupported variable type.\n");
 }
 
-void display_byte_variable(int32_t in_i_file_id, variable_informations_s *in_ps_current_var,
-    size_t *in_ai_count, size_t *in_ai_start)
+/**
+ * @brief Display a value of a byte variable
+ * @param in_i_file_id The file id
+ * @param in_ps_current_var The current variable to display
+ * @param in_ai_count The number of values to display
+ * @param in_ai_start The values index
+ * @return <b>void</b>
+ */
+void display_byte_variable(int32_t in_i_file_id, variable_information_t *in_ps_current_var,
+                           size_t *in_ai_count, size_t *in_ai_start)
 {
     signed char *value = calloc(1, sizeof(signed char));
 
-    check_error(nc_get_vara_schar(in_i_file_id, in_ps_current_var->i_id, in_ai_start, in_ai_count, value));
+    ERROR(nc_get_vara_schar(in_i_file_id, in_ps_current_var->i_id, in_ai_start, in_ai_count, value));
     printf("%hhi", value[0]);
     free(value);
 }
 
-void display_char_variable(int32_t in_i_file_id, variable_informations_s *in_s_current_var,
-    size_t *in_ai_count, size_t *in_ai_start)
+/**
+ * @brief Display a value of a char variable
+ * @param in_i_file_id The file id
+ * @param in_ps_current_var The current variable to display
+ * @param in_ai_count The number of values to display
+ * @param in_ai_start The values index
+ * @return <b>void</b>
+ */
+void display_char_variable(int32_t in_i_file_id, variable_information_t *in_s_current_var,
+                           size_t *in_ai_count, size_t *in_ai_start)
 {
     char *value = calloc(1, sizeof(char));
 
-    check_error(nc_get_vara_text(in_i_file_id, in_s_current_var->i_id, in_ai_start, in_ai_count, value));
+    ERROR(nc_get_vara_text(in_i_file_id, in_s_current_var->i_id, in_ai_start, in_ai_count, value));
     printf("%c", value[0]);
     free(value);
 }
 
-void display_short_variable(int32_t in_i_file_id, variable_informations_s *in_ps_current_var,
-    size_t *in_ai_count, size_t *in_ai_start)
+/**
+ * @brief Display a value of a short variable
+ * @param in_i_file_id The file id
+ * @param in_ps_current_var The current variable to display
+ * @param in_ai_count The number of values to display
+ * @param in_ai_start The values index
+ * @return <b>void</b>
+ */
+void display_short_variable(int32_t in_i_file_id, variable_information_t *in_ps_current_var,
+                            size_t *in_ai_count, size_t *in_ai_start)
 {
     short *value = calloc(1, sizeof(short));
 
-    check_error(nc_get_vara_short(in_i_file_id, in_ps_current_var->i_id, in_ai_start, in_ai_count, value));
+    ERROR(nc_get_vara_short(in_i_file_id, in_ps_current_var->i_id, in_ai_start, in_ai_count, value));
     printf("%hi", value[0]);
     free(value);
 }
 
-void display_int_variable(int32_t in_i_file_id, variable_informations_s *in_ps_current_var,
-    size_t *in_ai_count, size_t *in_ai_start)
+/**
+ * @brief Display a value of an int variable
+ * @param in_i_file_id The file id
+ * @param in_ps_current_var The current variable to display
+ * @param in_ai_count The number of values to display
+ * @param in_ai_start The values index
+ * @return <b>void</b>
+ */
+void display_int_variable(int32_t in_i_file_id, variable_information_t *in_ps_current_var,
+                          size_t *in_ai_count, size_t *in_ai_start)
 {
     int *value = calloc(1, sizeof(int));
 
-    check_error(nc_get_vara_int(in_i_file_id, in_ps_current_var->i_id, in_ai_start, in_ai_count, value));
+    ERROR(nc_get_vara_int(in_i_file_id, in_ps_current_var->i_id, in_ai_start, in_ai_count, value));
     printf("%i", value[0]);
     free(value);
 }
 
-void display_float_variable(int32_t in_i_file_id, variable_informations_s *in_ps_current_var,
-    size_t *in_ai_count, size_t *in_ai_start)
+/**
+ * @brief Display a value of a float variable
+ * @param in_i_file_id The file id
+ * @param in_ps_current_var The current variable to display
+ * @param in_ai_count The number of values to display
+ * @param in_ai_start The values index
+ * @return <b>void</b>
+ */
+void display_float_variable(int32_t in_i_file_id, variable_information_t *in_ps_current_var,
+                            size_t *in_ai_count, size_t *in_ai_start)
 {
     float *value = calloc(1, sizeof(float));
 
-    check_error(nc_get_vara_float(in_i_file_id, in_ps_current_var->i_id, in_ai_start, in_ai_count, value));
+    ERROR(nc_get_vara_float(in_i_file_id, in_ps_current_var->i_id, in_ai_start, in_ai_count, value));
     printf("%f", value[0]);
     free(value);
 }
 
-void display_double_variable(int32_t in_i_file_id, variable_informations_s *in_ps_current_var,
-    size_t *in_ai_count, size_t *in_ai_start)
+/**
+ * @brief Display a value of a double variable
+ * @param in_i_file_id The file id
+ * @param in_ps_current_var The current variable to display
+ * @param in_ai_count The number of values to display
+ * @param in_ai_start The values index
+ * @return <b>void</b>
+ */
+void display_double_variable(int32_t in_i_file_id, variable_information_t *in_ps_current_var,
+                             size_t *in_ai_count, size_t *in_ai_start)
 {
     double *value = calloc(1, sizeof(double));
 
-    check_error(nc_get_vara_double(in_i_file_id, in_ps_current_var->i_id, in_ai_start, in_ai_count, value));
-    printf("%f", value[0]);//printf("%.50f", value[0]);
+    ERROR(nc_get_vara_double(in_i_file_id, in_ps_current_var->i_id, in_ai_start, in_ai_count, value));
+    printf("%f", value[0]);
     free(value);
 }
 
-void display_ubyte_variable(int32_t in_i_file_id, variable_informations_s *in_ps_current_var,
-    size_t *in_ai_count, size_t *in_ai_start)
+/**
+ * @brief Display a value of an ubyte variable
+ * @param in_i_file_id The file id
+ * @param in_ps_current_var The current variable to display
+ * @param in_ai_count The number of values to display
+ * @param in_ai_start The values index
+ * @return <b>void</b>
+ */
+void display_ubyte_variable(int32_t in_i_file_id, variable_information_t *in_ps_current_var,
+                            size_t *in_ai_count, size_t *in_ai_start)
 {
     unsigned char *value = calloc(1, sizeof(unsigned char));
 
-    check_error(nc_get_vara_ubyte(in_i_file_id, in_ps_current_var->i_id, in_ai_start, in_ai_count, value));
+    ERROR(nc_get_vara_ubyte(in_i_file_id, in_ps_current_var->i_id, in_ai_start, in_ai_count, value));
     printf("%hhx", value[0]);
     free(value);
 }
 
-void display_ushort_variable(int32_t in_i_file_id, variable_informations_s *in_ps_current_var,
-    size_t *in_ai_count, size_t *in_ai_start)
+/**
+ * @brief Display a value of an ushort variable
+ * @param in_i_file_id The file id
+ * @param in_ps_current_var The current variable to display
+ * @param in_ai_count The number of values to display
+ * @param in_ai_start The values index
+ * @return <b>void</b>
+ */
+void display_ushort_variable(int32_t in_i_file_id, variable_information_t *in_ps_current_var,
+                             size_t *in_ai_count, size_t *in_ai_start)
 {
     unsigned short *value = calloc(1, sizeof(unsigned short));
 
-    check_error(nc_get_vara_ushort(in_i_file_id, in_ps_current_var->i_id, in_ai_start, in_ai_count, value));
+    ERROR(nc_get_vara_ushort(in_i_file_id, in_ps_current_var->i_id, in_ai_start, in_ai_count, value));
     printf("%hu", value[0]);
     free(value);
 }
 
-void display_uint_variable(int32_t in_i_file_id, variable_informations_s *in_ps_current_var,
-    size_t *in_ai_count, size_t *in_ai_start)
+/**
+ * @brief Display a value of an uint variable
+ * @param in_i_file_id The file id
+ * @param in_ps_current_var The current variable to display
+ * @param in_ai_count The number of values to display
+ * @param in_ai_start The values index
+ * @return <b>void</b>
+ */
+void display_uint_variable(int32_t in_i_file_id, variable_information_t *in_ps_current_var,
+                           size_t *in_ai_count, size_t *in_ai_start)
 {
     unsigned int *value = calloc(1, sizeof(unsigned int));
 
-    check_error(nc_get_vara_uint(in_i_file_id, in_ps_current_var->i_id, in_ai_start, in_ai_count, value));
+    ERROR(nc_get_vara_uint(in_i_file_id, in_ps_current_var->i_id, in_ai_start, in_ai_count, value));
     printf("%u", value[0]);
     free(value);
 }
 
-void display_int64_variable(int32_t in_i_file_id, variable_informations_s *in_ps_current_var,
-    size_t *in_ai_count, size_t *in_ai_start)
+/**
+ * @brief Display a value of an int64 variable
+ * @param in_i_file_id The file id
+ * @param in_ps_current_var The current variable to display
+ * @param in_ai_count The number of values to display
+ * @param in_ai_start The values index
+ * @return <b>void</b>
+ */
+void display_int64_variable(int32_t in_i_file_id, variable_information_t *in_ps_current_var,
+                            size_t *in_ai_count, size_t *in_ai_start)
 {
     long long *value = calloc(1, sizeof(long long));
 
-    check_error(nc_get_vara_longlong(in_i_file_id, in_ps_current_var->i_id, in_ai_start, in_ai_count, value));
+    ERROR(nc_get_vara_longlong(in_i_file_id, in_ps_current_var->i_id, in_ai_start, in_ai_count, value));
     printf("%lli", value[0]);
     free(value);
 }
 
-void display_uint64_variable(int32_t in_i_file_id, variable_informations_s *in_ps_current_var,
-    size_t *in_ai_count, size_t *in_ai_start)
+/**
+ * @brief Display a value of an uint64 variable
+ * @param in_i_file_id The file id
+ * @param in_ps_current_var The current variable to display
+ * @param in_ai_count The number of values to display
+ * @param in_ai_start The values index
+ * @return <b>void</b>
+ */
+void display_uint64_variable(int32_t in_i_file_id, variable_information_t *in_ps_current_var,
+                             size_t *in_ai_count, size_t *in_ai_start)
 {
     unsigned long long *value = calloc(1, sizeof(unsigned long long));
 
-    check_error(nc_get_vara_ulonglong(in_i_file_id, in_ps_current_var->i_id, in_ai_start, in_ai_count, value));
+    ERROR(nc_get_vara_ulonglong(in_i_file_id, in_ps_current_var->i_id, in_ai_start, in_ai_count, value));
     printf("%llu", value[0]);
     free(value);
 }
 
-void display_string_variable(int32_t in_i_file_id, variable_informations_s *in_ps_current_var,
-    size_t *in_ai_count, size_t *in_ai_start)
+/**
+ * @brief Display a value of a string variable
+ * @param in_i_file_id The file id
+ * @param in_ps_current_var The current variable to display
+ * @param in_ai_count The number of values to display
+ * @param in_ai_start The values index
+ * @return <b>void</b>
+ */
+void display_string_variable(int32_t in_i_file_id, variable_information_t *in_ps_current_var,
+                             size_t *in_ai_count, size_t *in_ai_start)
 {
     char **value = calloc(1, sizeof(char *));
 
-    check_error(nc_get_vara_string(in_i_file_id, in_ps_current_var->i_id, in_ai_start, in_ai_count, value));
+    ERROR(nc_get_vara_string(in_i_file_id, in_ps_current_var->i_id, in_ai_start, in_ai_count, value));
     printf("%s", value[0]);
     free(value);
 }
 
-void display_variables_values(int32_t in_i_file_id, variable_informations_s *in_ps_current_var,
-    bool in_b_raw)
+/**
+ * @brief Display the values in a variable
+ * @param in_i_file_id The file id
+ * @param in_ps_current_var The current variable to display
+ * @param in_b_raw The raw display flag
+ * @return <b>void</b>
+ */
+void display_variables_values(int32_t in_i_file_id, variable_information_t *in_ps_current_var,
+                              bool in_b_raw)
 {
     static void (*display_functions[])(int32_t in_i_file_id,
-    variable_informations_s *in_ps_current_var, size_t *in_ai_count, size_t *in_ai_start) = {
+    variable_information_t *in_ps_current_var, size_t *in_ai_count, size_t *in_ai_start) = {
       &display_invalid_variable, &display_byte_variable, &display_char_variable,
       &display_short_variable, &display_int_variable,
       &display_float_variable, &display_double_variable, &display_ubyte_variable,
@@ -222,15 +333,21 @@ void display_variables_values(int32_t in_i_file_id, variable_informations_s *in_
     free(ai_start);
 }
 
-void display_variables(file_informations *in_ps_file_infos, settings_t *in_ps_settings)
+/**
+ * @brief Display the variables of the file
+ * @param in_ps_file_infos The file informations
+ * @param in_ps_settings The display settings
+ * @return <b>void</b>
+ */
+void display_variables(file_information_t *in_ps_file_infos, settings_t *in_ps_settings)
 {
     printf("\n    " BOLD UNDERLINE "Variables: %d\n" RESET, in_ps_file_infos->i_nb_variables);
     for (int var = 0; var < in_ps_file_infos->i_nb_variables; var++) {
-        variable_informations_s s_current_var = {0};
+        variable_information_t s_current_var = {0};
         s_current_var.i_id = var;
         s_current_var.i_data_size = 1;
 
-        check_error(nc_inq_var(in_ps_file_infos->i_file_id, s_current_var.i_id,
+        ERROR(nc_inq_var(in_ps_file_infos->i_file_id, s_current_var.i_id,
           s_current_var.ac_var_name, &s_current_var.i_type, &s_current_var.i_ndims,
           s_current_var.ai_dimids, &s_current_var.i_natts));
         printf(BOLD "Variable %d:\n" RESET, s_current_var.i_id);
@@ -249,8 +366,8 @@ void display_variables(file_informations *in_ps_file_infos, settings_t *in_ps_se
             }
             printf("  - dims name = [");
             for (int32_t i_index = 0; i_index < s_current_var.i_ndims; i_index++) {
-                nc_inq_dimname(in_ps_file_infos->i_file_id,
-                    s_current_var.ai_dimids[i_index], s_current_var.aac_dims_name[i_index]);
+                ERROR(nc_inq_dimname(in_ps_file_infos->i_file_id,
+                    s_current_var.ai_dimids[i_index], s_current_var.aac_dims_name[i_index]));
                 printf("%s", s_current_var.aac_dims_name[i_index]);
                 if (i_index + 1 < s_current_var.i_ndims)
                     printf(", ");
@@ -259,7 +376,7 @@ void display_variables(file_informations *in_ps_file_infos, settings_t *in_ps_se
             }
         }
         for (int i_index = 0; i_index < s_current_var.i_ndims; i_index++)
-            check_error(nc_inq_dimlen(in_ps_file_infos->i_file_id,
+            ERROR(nc_inq_dimlen(in_ps_file_infos->i_file_id,
             s_current_var.ai_dimids[i_index], &s_current_var.ai_dims_size[i_index]));
         for (int index = 0; index < s_current_var.i_ndims; index++)
             s_current_var.i_data_size *= s_current_var.ai_dims_size[index];

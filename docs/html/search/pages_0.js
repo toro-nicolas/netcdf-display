@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['display_0',['netcdf-display',['../md_README.html',1,'']]]
+  ['display_20🗺️_0',['📊 netcdf-display 🗺️',['../md_README.html',1,'']]]
 ];

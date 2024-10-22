@@ -21,9 +21,9 @@ CFLAGS		=	-Werror -Wextra -I./include/
 DEBUGFLAGS	=	-g3
 OPTIMIZEFLAGS	=	-O3
 
-LDFLAGS 	=	-lnetcdf #-lhdf5
+LDFLAGS 	=	-lnetcdf
 
-.PHONY: all create-build debug clean fclean re
+.PHONY: all create-build debug clean fclean re color
 
 all: create-build $(BUILDDIR) $(NAME)
 	@echo -e "\033[1;33m$(NAME) compiled.\033[0m"
@@ -32,12 +32,15 @@ create-build:
 	@mkdir -p $(BUILDDIR)
 
 $(BUILDDIR)/%.o: $(SRCDIR)/%.c
-	@$(CC) $(CFLAGS) $(OPTIMIZEFLAGS) $(LDFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(OPTIMIZEFLAGS) $(LDFLAGS) -c $< -o $@
 
-debug: CFLAGS += $(DEBUGFLAGS)
+debug: CFLAGS += $(DEBUGFLAGS) -DCOLOR
 debug: OPTIMIZEFLAGS =
 debug: DEBUG_MODE = debug
 debug: all
+
+color: CFLAGS += -DCOLOR
+color: all
 
 $(NAME): $(OBJS)
 	@$(CC) $(OBJS) $(CFLAGS) $(OPTIMIZEFLAGS) $(LDFLAGS) -o $(NAME)
@@ -55,6 +58,8 @@ fclean: clean
 re:	fclean all
 
 re_debug: fclean debug
+
+re_color: fclean color
 
 # Documentation
 doc:
