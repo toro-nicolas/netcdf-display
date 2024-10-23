@@ -106,11 +106,11 @@ void check_error(int in_i_error, const char *in_ac_file,
 void open_file(char *in_str_path, int32_t in_i_mode, int32_t *in_pi_file_id);
 
 /**
- * @brief Get the informations of the file
- * @param in_ps_file_infos The file informations
+ * @brief Get the information of the file
+ * @param in_ps_file_info The file information
  * @return <b>void</b>
  */
-void get_infos(file_information_t *in_ps_file_infos);
+void get_info(file_information_t *in_ps_file_info);
 
 /**
  * @brief Close a file
@@ -125,35 +125,35 @@ void close_file(int32_t in_i_file_id);
 
 /**
  * @brief Display the dimensions of the file
- * @param in_ps_file_infos The file informations
+ * @param in_ps_file_info The file information
  * @return <b>void</b>
  */
-void display_dimensions(file_information_t *in_ps_file_infos);
+void display_dimensions(file_information_t *in_ps_file_info);
 
 /**
  * @brief Display the attributes of a variable
- * @param in_ps_file_infos The file informations
+ * @param in_ps_file_info The file information
  * @param in_i_var_id The variable id
  * @param in_i_nb_attributes The number of attributes
  * @param in_ac_tab The tabulation
  * @return <b>void</b>
  */
-void display_attribute(file_information_t *in_ps_file_infos, int32_t i_var_id,
+void display_attribute(file_information_t *in_ps_file_info, int32_t i_var_id,
                        int32_t i_att_id, char *ac_tab);
 
 /**
  * @brief Display the global attributes of the file
- * @param in_ps_file_infos The file informations
+ * @param in_ps_file_info The file information
  * @return <b>void</b>
  */
-void display_globals_attributes(file_information_t *in_ps_file_infos);
+void display_globals_attributes(file_information_t *in_ps_file_info);
 
 /**
  * @brief Display the variables of the file
- * @param in_ps_file_infos The file informations
+ * @param in_ps_file_info The file information
  * @param in_ps_settings The display settings
  * @return <b>void</b>
  */
-void display_variables(file_information_t *in_ps_file_infos, settings_t *in_ps_settings);
+void display_variables(file_information_t *in_ps_file_info, settings_t *in_ps_settings);
 
 #endif /* NC_DISPLAY_H_ */
