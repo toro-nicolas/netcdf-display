@@ -335,19 +335,19 @@ void display_variables_values(int32_t in_i_file_id, variable_information_t *in_p
 
 /**
  * @brief Display the variables of the file
- * @param in_ps_file_infos The file informations
+ * @param in_ps_file_info The file information
  * @param in_ps_settings The display settings
  * @return <b>void</b>
  */
-void display_variables(file_information_t *in_ps_file_infos, settings_t *in_ps_settings)
+void display_variables(file_information_t *in_ps_file_info, settings_t *in_ps_settings)
 {
-    printf("\n    " BOLD UNDERLINE "Variables: %d\n" RESET, in_ps_file_infos->i_nb_variables);
-    for (int var = 0; var < in_ps_file_infos->i_nb_variables; var++) {
+    printf("\n    " BOLD UNDERLINE "Variables: %d\n" RESET, in_ps_file_info->i_nb_variables);
+    for (int var = 0; var < in_ps_file_info->i_nb_variables; var++) {
         variable_information_t s_current_var = {0};
         s_current_var.i_id = var;
         s_current_var.i_data_size = 1;
 
-        ERROR(nc_inq_var(in_ps_file_infos->i_file_id, s_current_var.i_id,
+        ERROR(nc_inq_var(in_ps_file_info->i_file_id, s_current_var.i_id,
           s_current_var.ac_var_name, &s_current_var.i_type, &s_current_var.i_ndims,
           s_current_var.ai_dimids, &s_current_var.i_natts));
         printf(BOLD "Variable %d:\n" RESET, s_current_var.i_id);
@@ -366,7 +366,7 @@ void display_variables(file_information_t *in_ps_file_infos, settings_t *in_ps_s
             }
             printf("  - dims name = [");
             for (int32_t i_index = 0; i_index < s_current_var.i_ndims; i_index++) {
-                ERROR(nc_inq_dimname(in_ps_file_infos->i_file_id,
+                ERROR(nc_inq_dimname(in_ps_file_info->i_file_id,
                     s_current_var.ai_dimids[i_index], s_current_var.aac_dims_name[i_index]));
                 printf("%s", s_current_var.aac_dims_name[i_index]);
                 if (i_index + 1 < s_current_var.i_ndims)
@@ -376,17 +376,17 @@ void display_variables(file_information_t *in_ps_file_infos, settings_t *in_ps_s
             }
         }
         for (int i_index = 0; i_index < s_current_var.i_ndims; i_index++)
-            ERROR(nc_inq_dimlen(in_ps_file_infos->i_file_id,
+            ERROR(nc_inq_dimlen(in_ps_file_info->i_file_id,
             s_current_var.ai_dimids[i_index], &s_current_var.ai_dims_size[i_index]));
         for (int index = 0; index < s_current_var.i_ndims; index++)
             s_current_var.i_data_size *= s_current_var.ai_dims_size[index];
         printf("  - data size = %zu\n", s_current_var.i_data_size);
         if (in_ps_settings->b_attribute) {
             for (int i_att_id = 0; i_att_id < s_current_var.i_natts; i_att_id++)
-                display_attribute(in_ps_file_infos, s_current_var.i_id, i_att_id, TAB);
+                display_attribute(in_ps_file_info, s_current_var.i_id, i_att_id, TAB);
         }
         if (in_ps_settings->b_content && s_current_var.i_data_size != 0 && s_current_var.i_ndims != 0)
-            display_variables_values(in_ps_file_infos->i_file_id, &s_current_var, in_ps_settings->b_raw);
+            display_variables_values(in_ps_file_info->i_file_id, &s_current_var, in_ps_settings->b_raw);
     }
 }
 

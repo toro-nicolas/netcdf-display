@@ -13,6 +13,6 @@ var variables_8c =
     [ "display_uint64_variable", "variables_8c.html#adc5de2b5cde66119e183c47ae3ee9c5b", null ],
     [ "display_uint_variable", "variables_8c.html#af0eb733b1c47b33cf5e7105b94baee2a", null ],
     [ "display_ushort_variable", "variables_8c.html#af144719a6e325fdbd42d9686060736b1", null ],
-    [ "display_variables", "variables_8c.html#a8097f8b6e31a2fbd75c72c5fde9cf6fb", null ],
+    [ "display_variables", "variables_8c.html#a422a1c75d41ba050a8bfcb17853d7ade", null ],
     [ "display_variables_values", "variables_8c.html#a73007bdd46e7b2304b2bdcee99a95b74", null ]
 ];

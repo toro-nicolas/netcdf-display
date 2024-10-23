@@ -23,27 +23,27 @@ const char *apc_type_list[] = {"Unknown", "Byte", "Char", "Short", "Int",
  */
 void display(settings_t *ps_settings)
 {
-    file_information_t s_file_infos = {0};
+    file_information_t s_file_info = {0};
 
-    open_file(ps_settings->ac_file, NC_NOWRITE, &s_file_infos.i_file_id);
-    get_infos(&s_file_infos);
+    open_file(ps_settings->ac_file, NC_NOWRITE, &s_file_info.i_file_id);
+    get_info(&s_file_info);
     if (!ps_settings->b_variable && ps_settings->b_attribute)
         printf(BOLD "WARNING:" RESET " Variable attributes display is selectable, but variable display is not.\n");
     if (!ps_settings->b_variable && ps_settings->b_content)
         printf(BOLD "WARNING:" RESET " Variable content display is selectable, but variable display is not.\n");
-    printf(BOLD "Display all informations of the file :\n" RESET);
+    printf(BOLD "Display all information of the file :\n" RESET);
     if (ps_settings->b_global_attributes == false && ps_settings->b_dimension == false &&
     ps_settings->b_variable == false) {
         printf("\nNothing to show.\n");
         return;
     }
     if (ps_settings->b_global_attributes)
-        display_globals_attributes(&s_file_infos);
+        display_globals_attributes(&s_file_info);
     if (ps_settings->b_dimension)
-        display_dimensions(&s_file_infos);
+        display_dimensions(&s_file_info);
     if (ps_settings->b_variable)
-        display_variables(&s_file_infos, ps_settings);
-    close_file(s_file_infos.i_file_id);
+        display_variables(&s_file_info, ps_settings);
+    close_file(s_file_info.i_file_id);
 }
 
 int main(int argc, char **argv)

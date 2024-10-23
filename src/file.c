@@ -27,7 +27,7 @@ void check_error(int in_i_error, const char *in_ac_file,
 {
     if (in_i_error != 0) {
         fprintf(stderr, RED BOLD "ERROR:" RESET RED " %s:%d: %s\n" RESET, in_ac_file, in_i_line, in_ac_func);
-        fprintf(stderr, RED BOLD "Error informations:" RESET RED " %s\n" RESET, nc_strerror(in_i_error));
+        fprintf(stderr, RED BOLD "Error information:" RESET RED " %s\n" RESET, nc_strerror(in_i_error));
         exit(1);
     }
 }
@@ -93,16 +93,16 @@ void open_file(char *in_str_path, int32_t in_i_mode, int32_t *in_pi_file_id)
 }
 
 /**
- * @brief Get the informations of the file
- * @param in_ps_file_infos The file informations
+ * @brief Get the information of the file
+ * @param in_ps_file_info The file information
  * @return <b>void</b>
  */
-void get_infos(file_information_t *in_ps_file_infos)
+void get_info(file_information_t *in_ps_file_info)
 {
-    ERROR(nc_inq(in_ps_file_infos->i_file_id,
-        &in_ps_file_infos->i_nb_dimensions, &in_ps_file_infos->i_nb_variables,
-        &in_ps_file_infos->i_nb_attributes,
-        &in_ps_file_infos->i_first_unlimited_dimensions_id));
+    ERROR(nc_inq(in_ps_file_info->i_file_id,
+        &in_ps_file_info->i_nb_dimensions, &in_ps_file_info->i_nb_variables,
+        &in_ps_file_info->i_nb_attributes,
+        &in_ps_file_info->i_first_unlimited_dimensions_id));
 }
 
 /**
