@@ -42,22 +42,19 @@ void check_error(int in_i_error, const char *in_ac_file,
 void open_file(char *in_str_path, int32_t in_i_mode, int32_t *in_pi_file_id)
 {
     if (nc_open(in_str_path, in_i_mode, in_pi_file_id)) {
-        char str_exe_path[PATH_MAX] = {0};
-        bool b_subfolder = false;
-        int32_t i_len = readlink("/proc/self/exe", str_exe_path, sizeof(str_exe_path) - 1);
+        char ac_exe_path[PATH_MAX] = {0};
+        int32_t i_len = readlink("/proc/self/exe", ac_exe_path, sizeof(ac_exe_path) - 1);
         if (i_len == -1) {
             fprintf(stderr, RED BOLD "Error: " RESET RED " Cannot find grib_to_netcdf.py\n" RESET);
             exit(1);
         }
         for (int32_t i_index = i_len; i_index > -1; i_index--) {
-            if (str_exe_path[i_index] != '/')
-                str_exe_path[i_index] = '\0';
-            else if (b_subfolder == false)
-                b_subfolder = true;
+            if (ac_exe_path[i_index] != '/')
+                ac_exe_path[i_index] = '\0';
             else
                 break;
         }
-        strcat(str_exe_path, "grib_to_netcdf.py");
+        strcat(ac_exe_path, "grib_to_netcdf.py");
         int32_t i_file_name_index = 0;
         for (int32_t i_index = 0; in_str_path[i_index] != 0; i_index++) {
             if (in_str_path[i_index] == '/')
@@ -67,7 +64,7 @@ void open_file(char *in_str_path, int32_t in_i_mode, int32_t *in_pi_file_id)
         strcat(str_output, "/tmp/");
         strcpy(str_output, in_str_path + i_file_name_index);
         strcat(str_output, ".nc");
-        char *astr_convert_args[] = {"/usr/bin/python3", str_exe_path, in_str_path, str_output, NULL};
+        char *astr_convert_args[] = {"/usr/bin/python3", ac_exe_path, in_str_path, str_output, NULL};
         int32_t i_status = 0;
         pid_t i_pid = fork();
         char **astr_env = environ;
