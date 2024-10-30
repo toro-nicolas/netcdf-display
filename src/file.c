@@ -26,7 +26,9 @@ void check_error(int in_i_error, const char *in_ac_file,
                  const int in_i_line, const char *in_ac_func)
 {
     if (in_i_error != 0) {
+        #ifdef DEBUG_MODE
         fprintf(stderr, RED BOLD "ERROR:" RESET RED " %s:%d: %s\n" RESET, in_ac_file, in_i_line, in_ac_func);
+        #endif
         fprintf(stderr, RED BOLD "Error information:" RESET RED " %s\n" RESET, nc_strerror(in_i_error));
         exit(1);
     }
