@@ -8,7 +8,6 @@
 NAME		=	netcdf-display
 
 CC		=	gcc
-DEBUG_MODE	=
 
 BUILDDIR 	=	./build
 SRCDIR		=	./src
@@ -18,7 +17,7 @@ SRCS		=	$(shell find . -path ./tests -prune -o -type f -name "*.c" -print)
 OBJS     	=	$(addprefix $(BUILDDIR)/, $(notdir $(SRCS:.c=.o)))
 
 CFLAGS		=	-Werror -Wextra -I./include/
-DEBUGFLAGS	=	-g3
+DEBUGFLAGS	=	-g3 -DDEBUG_MODE
 OPTIMIZEFLAGS	=	-O3
 
 LDFLAGS 	=	-lnetcdf
@@ -36,7 +35,6 @@ $(BUILDDIR)/%.o: $(SRCDIR)/%.c
 
 debug: CFLAGS += $(DEBUGFLAGS) -DCOLOR
 debug: OPTIMIZEFLAGS =
-debug: DEBUG_MODE = debug
 debug: all
 
 color: CFLAGS += -DCOLOR
