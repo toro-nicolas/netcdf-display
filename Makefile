@@ -12,7 +12,7 @@ CC		=	gcc
 BUILDDIR 	=	./build
 SRCDIR		=	./src
 
-SRCS		=	$(shell find . -path ./tests -prune -o -type f -name "*.c" -print)
+SRCS		=	$(shell find $(SRCDIR) -path ./tests -prune -o -type f -name "*.c" -print)
 
 OBJS     	=	$(addprefix $(BUILDDIR)/, $(notdir $(SRCS:.c=.o)))
 
