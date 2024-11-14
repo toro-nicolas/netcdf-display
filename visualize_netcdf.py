@@ -4,8 +4,7 @@ import argparse
 import os
 import plotly.graph_objects as go
 import plotly.express as px
-from jupyter_dash import JupyterDash
-from dash import dcc, html, Input, Output
+from dash import Dash, dcc, html, Input, Output
 
 
 def conv_tick(data):
@@ -34,7 +33,7 @@ def get_2d_slice(array, index_list):
     return sliced_data
 
 
-app = JupyterDash(__name__)
+app = Dash()
 layout = []
 inputs = []
 variables_data = []
@@ -240,4 +239,4 @@ def update_graph(*slider_values):
     return figures
 
 
-app.run_server(mode="inline")
+app.run_server(debug=False)
