@@ -4,6 +4,7 @@
 ## Table of contents 📑
 - [Description](https://github.com/toro-nicolas/netcdf-display/blob/main/README.md#description-)
 - [Usage](https://github.com/toro-nicolas/netcdf-display/blob/main/README.md#usage-%EF%B8%8F)
+- [Visualize](https://github.com/toro-nicolas/netcdf-display/blob/main/README.md#visualize-)
 - [Compilation](https://github.com/toro-nicolas/netcdf-display/blob/main/README.md#compilation-%EF%B8%8F)
 - [Documentation](https://github.com/toro-nicolas/netcdf-display/blob/main/README.md#documentation-)
 - [Code mandatory](https://github.com/toro-nicolas/netcdf-display/blob/main/README.md#code-mandatory-)
@@ -39,6 +40,40 @@ OPTIONS
         -c, --content                   Display content of variables
         -r, --raw                       Set display style to a raw text
 ```
+
+## Visualize 📊
+You can visualize the content of a NetCDF (or a GRIB) file with this command :
+```sh
+python3 visualize_netcdf.py file.nc
+```
+To see the results, go to [http://127.0.0.1:8050/](http://127.0.0.1:8050/) in your browser.
+
+For more information, please see the help section.
+```sh
+> python3 visualize_netcdf.py --help
+usage: visualize_netcdf.py [-h] [--flipud] [--vmin VMIN] [--vmax VMAX] file
+
+Visualize a NetCDF file.
+
+positional arguments:
+  file         The NetCDF file to visualize.
+
+options:
+  -h, --help   show this help message and exit
+  --flipud     Revert Up down on plot.
+  --vmin VMIN  The minimum value in the variable data.
+  --vmax VMAX  The maximum value in the variable data.
+```
+
+To use it, you need to install the following packages (with pip) :
+```
+- jupyter_dash
+- netcdf4
+- numpy
+- plotly
+```
+
+**Only lightweight files are accepted. Files that are too large may cause the program to crash !**
 
 
 ## Compilation 🛠️

@@ -18,6 +18,7 @@
 <li><a href="#table-of-contents-📑">Table of contents 📑</a></li>
 <li><a href="#description-📝">Description 📝</a></li>
 <li><a href="#usage-⚔️">Usage ⚔️</a></li>
+<li><a href="#visualize-📊">Visualize 📊</a></li>
 <li><a href="#compilation-🛠️">Compilation 🛠️</a></li>
 <li><a href="#documentation-📚">Documentation 📚</a></li>
 <li><a href="#code-mandatory-📦">Code mandatory 📦</a></li>
@@ -35,6 +36,7 @@
 <ul>
 <li><a href="https://github.com/toro-nicolas/netcdf-display/blob/main/README.md#description-">Description</a></li>
 <li><a href="https://github.com/toro-nicolas/netcdf-display/blob/main/README.md#usage-%EF%B8%8F">Usage</a></li>
+<li><a href="https://github.com/toro-nicolas/netcdf-display/blob/main/README.md#visualize-">Visualize</a></li>
 <li><a href="https://github.com/toro-nicolas/netcdf-display/blob/main/README.md#compilation-%EF%B8%8F">Compilation</a></li>
 <li><a href="https://github.com/toro-nicolas/netcdf-display/blob/main/README.md#documentation-">Documentation</a></li>
 <li><a href="https://github.com/toro-nicolas/netcdf-display/blob/main/README.md#code-mandatory-">Code mandatory</a></li>
@@ -64,6 +66,33 @@ OPTIONS
         -c, --content                   Display content of variables  
         -r, --raw                       Set display style to a raw text  
 </code></pre>
+<h2 id="visualize-📊">Visualize 📊</h2>
+<p>You can visualize the content of a NetCDF (or a GRIB) file with this command :</p>
+<pre class=" language-sh"><code class="prism  language-sh">python3 visualize_netcdf.py file.nc  
+</code></pre>
+<p>To see the results, go to <a href="http://127.0.0.1:8050/">http://127.0.0.1:8050/</a> in your browser.</p>
+<p>For more information, please see the help section.</p>
+<pre class=" language-sh"><code class="prism  language-sh">&gt; python3 visualize_netcdf.py --help  
+usage: visualize_netcdf.py [-h] [--flipud] [--vmin VMIN] [--vmax VMAX] file  
+  
+Visualize a NetCDF file.  
+  
+positional arguments:  
+  file         The NetCDF file to visualize.  
+  
+options:  
+ -h, --help   show this help message and exit  
+  --flipud     Revert Up down on plot.  
+  --vmin VMIN  The minimum value in the variable data.  
+  --vmax VMAX  The maximum value in the variable data.  
+</code></pre>
+<p>To use it, you need to install the following packages (with pip) :</p>
+<pre><code>- jupyter_dash  
+- netcdf4  
+- numpy  
+- plotly  
+</code></pre>
+<p><strong>Only lightweight files are accepted. Files that are too large may cause the program to crash !</strong></p>
 <h2 id="compilation-🛠️">Compilation 🛠️</h2>
 <p><a href="https://docs.unidata.ucar.edu/netcdf-c/current/"><strong>NetCDF lib</strong></a> is required to compile the project.</p>
 <p>You can compile the project with this command :</p>

@@ -105,6 +105,7 @@ Table of contents 📑</h1>
 <ul>
 <li><a href="https://github.com/toro-nicolas/netcdf-display/blob/main/README.md#description-">Description</a></li>
 <li><a href="https://github.com/toro-nicolas/netcdf-display/blob/main/README.md#usage-%EF%B8%8F">Usage</a></li>
+<li><a href="https://github.com/toro-nicolas/netcdf-display/blob/main/README.md#visualize-">Visualize</a></li>
 <li><a href="https://github.com/toro-nicolas/netcdf-display/blob/main/README.md#compilation-%EF%B8%8F">Compilation</a></li>
 <li><a href="https://github.com/toro-nicolas/netcdf-display/blob/main/README.md#documentation-">Documentation</a></li>
 <li><a href="https://github.com/toro-nicolas/netcdf-display/blob/main/README.md#code-mandatory-">Code mandatory</a></li>
@@ -133,6 +134,28 @@ Usage ⚔️</h1>
 <div class="line">        -c, --content                   Display content of variables</div>
 <div class="line">        -r, --raw                       Set display style to a raw text</div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md4"></a>
+Visualize 📊</h1>
+<p>You can visualize the content of a NetCDF (or a GRIB) file with this command : </p><div class="fragment"><div class="line">python3 visualize_netcdf.py file.nc</div>
+</div><!-- fragment --><p> To see the results, go to <a href="http://127.0.0.1:8050/">http://127.0.0.1:8050/</a> in your browser.</p>
+<p>For more information, please see the help section. </p><div class="fragment"><div class="line">&gt; python3 visualize_netcdf.py --help</div>
+<div class="line">usage: visualize_netcdf.py [-h] [--flipud] [--vmin VMIN] [--vmax VMAX] file</div>
+<div class="line"> </div>
+<div class="line">Visualize a NetCDF file.</div>
+<div class="line"> </div>
+<div class="line">positional arguments:</div>
+<div class="line">  file         The NetCDF file to visualize.</div>
+<div class="line"> </div>
+<div class="line">options:</div>
+<div class="line">  -h, --help   show this help message and exit</div>
+<div class="line">  --flipud     Revert Up down on plot.</div>
+<div class="line">  --vmin VMIN  The minimum value in the variable data.</div>
+<div class="line">  --vmax VMAX  The maximum value in the variable data.</div>
+</div><!-- fragment --><p>To use it, you need to install the following packages (with pip) : </p><div class="fragment"><div class="line">- jupyter_dash</div>
+<div class="line">- netcdf4</div>
+<div class="line">- numpy</div>
+<div class="line">- plotly</div>
+</div><!-- fragment --><p><b>Only lightweight files are accepted. Files that are too large may cause the program to crash !</b></p>
+<h1><a class="anchor" id="autotoc_md5"></a>
 Compilation 🛠️</h1>
 <p><a href="https://docs.unidata.ucar.edu/netcdf-c/current/"><b>NetCDF lib</b></a> is required to compile the project.</p>
 <p>You can compile the project with this command : </p><div class="fragment"><div class="line">make</div>
@@ -140,7 +163,7 @@ Compilation 🛠️</h1>
 </div><!-- fragment --><p>If you want to debug the program (debug contain colors), you can compile the project with this : </p><div class="fragment"><div class="line">make debug </div>
 </div><!-- fragment --><p>If you want clean the project, you can run this command : </p><div class="fragment"><div class="line">make fclean</div>
 </div><!-- fragment --><p>You can clean and compile the project with <code>make re</code> , for color <code>make re_color</code> and for debugging <code>make re_debug</code></p>
-<h1><a class="anchor" id="autotoc_md5"></a>
+<h1><a class="anchor" id="autotoc_md6"></a>
 Documentation 📚</h1>
 <p>The documentation is accessible <a href="https://toro-nicolas.github.io/netcdf-assembler/html/">here</a>.</p>
 <p>You can generate the documentation with this command : </p><div class="fragment"><div class="line">make doc</div>
@@ -150,7 +173,7 @@ Documentation 📚</h1>
 <li>doxygen-doxywizard</li>
 <li>graphviz</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md6"></a>
+<h1><a class="anchor" id="autotoc_md7"></a>
 Code mandatory 📦</h1>
 <ul>
 <li>You'll need to create a branch where you'll push your code. Once you've completed your tasks on this branch, we'll work together to merge it and check that everything works.</li>
@@ -164,7 +187,7 @@ Code mandatory 📦</h1>
 </li>
 </ul>
 <p><b>Of course, in exceptional cases, we may depart from these rules.</b></p>
-<h1><a class="anchor" id="autotoc_md7"></a>
+<h1><a class="anchor" id="autotoc_md8"></a>
 Contributors 👤</h1>
 <p>This project was carried out alone by <a href="https://github.com/toro-nicolas"><b>Nicolas TORO</b></a>. </p>
 </div></div><!-- contents -->
